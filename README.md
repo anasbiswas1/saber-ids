@@ -1,3 +1,5 @@
+> **SABER manuscript.** The protocols, notebooks (14 to 39) and results for *Saliency Validation Does Not Certify Deployment: Recovery and a Silent Batch-Normalisation Failure in Pruned IoT Intrusion Detectors* are documented in [README_SABER.md](README_SABER.md). The rest of this README describes the earlier diagnostic study.
+
 # Pruning-Induced Decision-Boundary Reallocation in Fine-Grained IoT Intrusion Classification
 
 **Repository companion for the Computer Networks submission.**
