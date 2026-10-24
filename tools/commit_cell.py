@@ -17,8 +17,8 @@ import sys
 from glob import glob
 from pathlib import Path
 
-DRIVE_PROJECT_ROOT = Path("/content/drive/MyDrive/IoT_Trust_Research")
-REPO_ROOT = Path(os.environ.get("IOT_TRUST_REPO_ROOT", str(DRIVE_PROJECT_ROOT / "iot-trust-compression")))
+DRIVE_PROJECT_ROOT = Path("/content/drive/MyDrive/SABER_Research")
+REPO_ROOT = Path(os.environ.get("SABER_REPO_ROOT", str(DRIVE_PROJECT_ROOT / "saber-ids")))
 GIT_NAME = "Md Anas Biswas"
 GIT_EMAIL = "anasbiswas@gmail.com"
 FORBIDDEN_NAMES = {".git-credentials", ".gitconfig", "kaggle.json", ".env"}

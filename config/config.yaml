@@ -15,7 +15,7 @@ author: Md Anas Biswas
 # In Colab the repo is cloned INSIDE Drive, so one tree serves both.
 # Override drive_root at runtime if a notebook runs elsewhere.
 paths:
-  drive_root: /content/drive/MyDrive/IoT_Trust_Research/iot-trust-compression
+  drive_root: /content/drive/MyDrive/SABER_Research/saber-ids
   data: data                 # gitignored — lives in Drive only
   models: models             # gitignored — binaries in Drive only
   results: results           # tracked (tables/figures/arrays)

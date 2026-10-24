@@ -3,7 +3,7 @@
 
 project:
   name: SABER-IDS
-  branch: saber-ids-method
+  branch: main
   output_root: results/saber
   primary_dataset: CICIoT2023
   primary_architecture: CNN1D

@@ -24,7 +24,7 @@ from torch import nn
 
 
 KNOWN_COLAB_ROOT = Path(
-    "/content/drive/MyDrive/IoT_Trust_Research/iot-trust-compression"
+    "/content/drive/MyDrive/SABER_Research/saber-ids"
 )
 
 
