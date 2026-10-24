@@ -1,0 +1,61 @@
+{
+  "notebook": "41_unseen_family_compression",
+  "question": "does a pruned and recovered CICIoT2023 detector raise an attack family it never saw in training less often than the dense detector trained and recovered the same way, at matched in-distribution risk",
+  "motivation": "notebook 40: up to 90% realised FLOP reduction costs nothing in deployed risk after two full epochs of recovery, so no pruning method has anything to win in distribution; recovery cannot help on traffic absent from the training data, and compressed models are known to lose rare and atypical inputs while keeping aggregate accuracy; the locked test partition already showed the shallow students losing 0.06-0.13 fine macro-F1 against the teacher's 0.03; this notebook measures the unseen-family gap before any method is designed",
+  "design": {
+    "corpus": "CICIoT2023, frozen split, validation only (no test access); evaluation subsample of notebooks 37-40 (up to 4,000 rows per class, seed 0)",
+    "held_out_families": [
+      "dos",
+      "reconnaissance",
+      "web_application"
+    ],
+    "held_out_rule": "every class of the held-out family is removed from the training rows, the class weights, the clipping bounds, the recalibration slice and the Fisher batches; the models have one output per remaining class; the in-distribution audit uses the evaluation rows of the remaining classes; the unseen audit uses the evaluation rows of the held-out family; one thing is shared across settings and not refit per family: the frozen bridge's per-feature standardisation (mean and standard deviation of the full training split), which carries no label information",
+    "architectures": "shallow CNN (64/128) and deep CNN (64/128/128/256), one output per remaining class",
+    "teacher": "trained from scratch per (architecture, family, seed): 4 epochs, Adam 1e-3, batch 1,024, inverse-square-root class weights normalised to unit mean, seeded initialisation and shuffle, inputs clipped at the 0.1 and 99.9 percentiles of 400,000 remaining training rows (seed 2026)",
+    "teacher_acceptance": "on the remaining classes' evaluation rows, after recalibration: benign escalation at most 0.10, attack recall at least 0.85, fine macro-F1 at least 0.40 (looser than notebook 29's 0.90 and 0.50 because holding out a family removes some of the easiest classes from the pooled recall and the mean); the rule exists to exclude a broken teacher, not to select a good one; a cell whose teacher fails is excluded from the verdict and listed",
+    "dense_reference": "the cell's teacher given two further epochs under the cell's recovery seed, then recalibrated (same treatment as the students)",
+    "students": "magnitude (L1) and Fisher scores computed on the teacher (Fisher on 40 training batches of remaining classes); removal orders ascending with per-layer floors (shallow 4, deep 8); prefixes calibrated to 70% and 90% realised FLOP reduction (tolerance 1.5 points); recovered two full epochs over the remaining training rows under the cell's recovery seed; recalibrated",
+    "recalibration": "BatchNorm running statistics re-estimated on the first 51,200 rows of a seed-2026 permutation of the remaining training rows, weights frozen",
+    "seeds": [
+      101,
+      211,
+      307,
+      401,
+      503
+    ],
+    "cells": "2 architectures x 3 families x 5 seeds = 30 teachers, 30 dense references, 120 students"
+  },
+  "endpoints": {
+    "unseen_detect": "fraction of the held-out family's evaluation rows predicted as any attack class (argmax rule), the primary endpoint",
+    "unseen_absorption": "share of the held-out family's rows predicted as benign and as each remaining attack family (descriptive)",
+    "unseen_attack_mass": "mean of 1 minus the benign probability on the held-out rows (threshold-free, descriptive)",
+    "in_distribution": "recalibrated ground-truth HSR (balanced profile), benign escalation, attack-miss rate, family and fine macro-F1, ECE and per-family recall on the remaining classes",
+    "paired_gap": "dense reference's unseen_detect minus the student's, under the same seed; mean over accepted seeds with a 95% t interval",
+    "matched": "the mean paired difference in in-distribution HSR between student and dense reference is within 0.02"
+  },
+  "P1_gap": "for an architecture, P1 holds if at 90% realised reduction, for at least two of the three held-out families and for both methods, the paired gap in unseen_detect is at least 0.05 with the lower end of its 95% interval above zero, and the cell is matched in distribution",
+  "S1_dose": "descriptive: in the majority of (architecture, family, method) cells the paired gap at 90% exceeds the gap at 70%",
+  "S2_ceiling": "descriptive: the dense reference's own unseen_detect per family, the ceiling against which the gap is read",
+  "readings": {
+    "per_architecture": "gap_at_matched_risk if P1 holds; gap_but_unmatched if the gap condition holds in at least two families for both methods but matching fails in one of those cells; partial if at least one cell meets the gap condition but P1 fails; no_gap if no cell meets it; a separate flag student_better is set when at least half of the 90% cells have a negative gap with the upper end of the interval below zero",
+    "overall": "route_open if both architectures read gap_at_matched_risk; route_open_one_architecture if exactly one does; route_closed if both read no_gap; inconclusive otherwise",
+    "route_open": "pruned detectors miss unseen attack families that the dense detector catches, at matched in-distribution risk, and recovery on training data cannot close it; the method paper targets this gap with a recovery objective that preserves the teacher's behaviour off the training distribution; next is the design of that objective and its baselines, not more measurement",
+    "route_open_one_architecture": "as route_open, scoped to that architecture, with the other architecture reported as a boundary of the claim",
+    "route_closed": "compression does not make these detectors forget unseen attack families; the off-distribution method route is closed on this setup, and method effort moves to a problem that is open",
+    "inconclusive": "the cells are reported as they are; no method is built on a partial result; a targeted follow-up (more seeds or families) is run only if a cell is close to the mark"
+  },
+  "budgets": [
+    0.7,
+    0.9
+  ],
+  "primary_budget": 0.9,
+  "methods": [
+    "magnitude",
+    "fisher"
+  ],
+  "gap_threshold": 0.05,
+  "match_threshold": 0.02,
+  "teacher_epochs": 4,
+  "recovery_epochs": 2,
+  "no_test_access": true
+}
