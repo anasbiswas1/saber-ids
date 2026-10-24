@@ -1,0 +1,181 @@
+{
+  "notebook": "40_compression_headroom",
+  "reading": "headroom_closes_with_recovery",
+  "meaning": "the cost of compression is a recovery-budget effect: a method claim could only be about cheap recovery, which is weaker",
+  "by_architecture": {
+    "shallow": {
+      "H1_headroom": true,
+      "knee_budget": 0.9,
+      "H1_by_budget": {
+        "0.70": {
+          "best_method": "fisher",
+          "n": 5,
+          "gap": 0.009129855188911818,
+          "gap_lo": 0.0020334253813055906,
+          "gap_hi": 0.016226284996518046,
+          "min_seed_gap": 0.002631434780226788,
+          "condition": false
+        },
+        "0.80": {
+          "best_method": "taylor",
+          "n": 5,
+          "gap": 0.013631233907342822,
+          "gap_lo": 0.005360895379004509,
+          "gap_hi": 0.021901572435681135,
+          "min_seed_gap": 0.0025912602034295074,
+          "condition": false
+        },
+        "0.90": {
+          "best_method": "taylor",
+          "n": 5,
+          "gap": 0.03861142053651318,
+          "gap_lo": 0.0311225936139655,
+          "gap_hi": 0.04610024745906086,
+          "min_seed_gap": 0.028366903453187514,
+          "condition": true
+        }
+      },
+      "H2_selection_lever": true,
+      "H2_by_budget": {
+        "0.90": {
+          "max_abs_paired_difference": 0.03813407351947556,
+          "n_holm_significant": 6,
+          "condition": true
+        }
+      },
+      "H3_persistence": false,
+      "H3_standard_90": {
+        "best_method": "saber_v2",
+        "n": 3,
+        "gap": -0.0064364541675036024,
+        "gap_lo": -0.012492775006660947,
+        "gap_hi": -0.0003801333283462568,
+        "min_seed_gap": -0.008179178612516214,
+        "means": {
+          "random": 0.18248205839922568,
+          "magnitude": 0.1898869633498292,
+          "taylor": 0.18017688987905012,
+          "fisher": 0.18205352958005386,
+          "saber_v2": 0.17147483306245925
+        }
+      },
+      "anchor_gap_at_40": {
+        "random": 0.007010828874564018,
+        "magnitude": 0.004543014188930094,
+        "taylor": 0.007530176585526205,
+        "fisher": 0.0023140556235276997,
+        "saber_v2": -0.002693522762549999
+      },
+      "reading": "headroom_closes_with_recovery"
+    },
+    "deep": {
+      "H1_headroom": false,
+      "knee_budget": null,
+      "H1_by_budget": {
+        "0.70": {
+          "best_method": "taylor",
+          "n": 5,
+          "gap": -0.017853216705319485,
+          "gap_lo": -0.021523386576864718,
+          "gap_hi": -0.014183046833774254,
+          "min_seed_gap": -0.022176366392140406,
+          "condition": false
+        },
+        "0.80": {
+          "best_method": "fisher",
+          "n": 5,
+          "gap": -0.02394660433520206,
+          "gap_lo": -0.03147168322146049,
+          "gap_hi": -0.01642152544894363,
+          "min_seed_gap": -0.030457807563777195,
+          "condition": false
+        },
+        "0.90": {
+          "best_method": "magnitude",
+          "n": 5,
+          "gap": -0.006308504227461148,
+          "gap_lo": -0.009489437560970293,
+          "gap_hi": -0.0031275708939520037,
+          "min_seed_gap": -0.008929712751775926,
+          "condition": false
+        }
+      },
+      "H2_selection_lever": false,
+      "H2_by_budget": {},
+      "H3_persistence": false,
+      "H3_standard_90": {
+        "best_method": "magnitude",
+        "n": 3,
+        "gap": -0.007702562042329423,
+        "gap_lo": -0.01495350912169195,
+        "gap_hi": -0.0004516149629668967,
+        "min_seed_gap": -0.009764248278884585,
+        "means": {
+          "random": 0.19322571416397313,
+          "magnitude": 0.18216066178484683,
+          "taylor": 0.18538558463139823,
+          "fisher": 0.18703882933718033,
+          "saber_v2": 0.18749048897329604
+        }
+      },
+      "anchor_gap_at_40": {
+        "random": -0.003455744051423448,
+        "magnitude": -0.023888168587133145,
+        "taylor": -0.015790434798487983,
+        "fisher": -0.014025309983382323,
+        "saber_v2": -0.0029338397764832715
+      },
+      "reading": "no_headroom"
+    }
+  },
+  "collapses_as_trained": 2,
+  "prereg": {
+    "notebook": "40_compression_headroom",
+    "question": "at what realised compression budget does a pruned CICIoT2023 detector, recovered and recalibrated, carry more ground-truth operational risk than the dense model recovered and recalibrated the same way, and do the selection methods separate there",
+    "motivation": "on the shallow network, students recovered at 25%, 40% and 55% realised FLOP reduction sit at 0.14-0.18 ground-truth HSR with stored statistics, and HSR does not rise across those budgets (notebooks 17, 19); recalibrated students of both networks at 40% average 0.15-0.19 (notebooks 31, 37), on average no higher than a dense shallow model trained to the acceptance rule (0.194, notebook 29); at these budgets a method that lowers deployed risk has little or nothing to win; this notebook measures the gap to a dense model recovered the same way and looks for the budget where compression starts to cost risk, before any method is designed",
+    "design": {
+      "architectures": "shallow CNN (64/128, notebook 17b teacher) and deep CNN (64/128/128/256, notebook 20 teacher), CICIoT2023",
+      "methods": "random, magnitude, taylor, fisher, saber_v2 (V-C)",
+      "removal_orders": "ascending score with a per-layer floor (shallow 4 channels, from config/saber.yaml; deep 8), built from the committed score tables (shallow: 15_baselines + 16b v_c; deep: 20_depth_probe), the same orders that produced the frozen 40% structures; stage 4 asserts that every frozen 40% structure is an exact prefix",
+      "budgets": "40% (the frozen 17b/20b structures, unchanged) and 70%, 80%, 90% realised FLOP reduction, each prefix calibrated with the library routine postg5.calibrate_prefix_count against the surgery profiler, tolerance 1.5 points",
+      "inputs": "clipped at the 0.1 and 99.9 percentiles of 400,000 training rows (seed 2026), as in notebook 39, for every model including the dense reference",
+      "reference": "the dense teacher, recovered and recalibrated exactly like the students under the same seed (paired comparison)",
+      "minimal_recovery": "one pass over a seeded 10% training subset, batch 1,024, Adam 1e-3, inverse-square-root class weights; seeds 101, 211, 307, 401, 503; 2 architectures x (1 dense + 5 methods x 4 budgets) x 5 seeds = 210 runs",
+      "standard_recovery": "two full epochs over all training rows, seeded shuffle, same optimiser and loss; 90% budget only; seeds 101, 211, 307; 2 architectures x (1 dense + 5 methods) x 3 seeds = 36 runs",
+      "recalibration": "every recovered model, on the common slice of notebooks 31 to 39 (first 51,200 rows of a seed-2026 permutation), weights frozen",
+      "evaluation": "validation evaluation subsample (up to 4,000 rows per class, seed 0), the same rows as notebooks 37 to 39; no test access"
+    },
+    "endpoint": "primary: recalibrated ground-truth HSR under the balanced profile; the paired gap of a student is its HSR minus the dense reference's HSR under the same seed and regime; benign escalation, attack-miss rate, family and fine macro-F1, AWBIR, ECE and per-family recall are recorded and reported descriptively",
+    "H1_headroom": "for an architecture, H1 holds if at some budget in {70%, 80%, 90%} the BEST method (lowest mean recalibrated HSR under minimal recovery) has a mean paired gap of at least 0.02 with the lower end of its paired 95% t interval above zero; the smallest such budget is reported as the knee; 0.02 is the within-method seed range of recalibrated HSR at 40% (0.014 to 0.023, notebook 37)",
+    "H2_selection_lever": "for an architecture, H2 holds if at some budget where the H1 condition holds, the largest absolute paired difference between two methods' recalibrated HSR is at least 0.02 and at least one of the ten paired t-tests is significant after Holm correction (alpha 0.05)",
+    "H3_persistence": "for an architecture, H3 holds if at 90% under standard recovery the best method (lowest mean recalibrated HSR) has a mean paired gap to the dense reference (standard recovery, same seed) of at least 0.02 and a positive gap on every one of the three seeds",
+    "readings": {
+      "per_architecture": "no_headroom if H1 fails; otherwise headroom_closes_with_recovery if H3 fails; otherwise headroom_without_selection_lever if H2 fails; otherwise method_route_open",
+      "overall": "the most favourable per-architecture reading, in the order method_route_open, headroom_without_selection_lever, headroom_closes_with_recovery, no_headroom",
+      "method_route_open": "compression costs deployed risk at that budget even after strong recovery and the choice of channels changes it: a method paper targets that budget; the first lever to test is layer-width allocation (notebook 39)",
+      "headroom_without_selection_lever": "compression costs risk there but the five methods are equal: a method must act on something other than channel ranking (allocation or recovery); the next test is allocation-matched structures at that budget",
+      "headroom_closes_with_recovery": "the cost of compression is a recovery-budget effect: a method claim could only be about cheap recovery, which is weaker",
+      "no_headroom": "compression is free in deployed risk up to 90% on these two networks: the SABER method route is closed on this setup, and the manuscript's strongest contribution remains the BatchNorm failure"
+    },
+    "seeds_minimal": [
+      101,
+      211,
+      307,
+      401,
+      503
+    ],
+    "seeds_standard": [
+      101,
+      211,
+      307
+    ],
+    "budgets": [
+      0.4,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "gap_threshold": 0.02,
+    "no_test_access": true
+  }
+}
