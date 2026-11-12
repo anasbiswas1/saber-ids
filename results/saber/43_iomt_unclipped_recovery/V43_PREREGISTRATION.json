@@ -1,0 +1,46 @@
+{
+  "notebook": "43_iomt_unclipped_recovery",
+  "question": "does a shallow IoMT detector, recovered on CIC-IoMT-2024 training rows standardised WITHOUT clipping under the CICIoT2023 recipe, show the BatchNorm normalisation collapse that the clipped IoMT pipeline never showed (NB34)",
+  "motivation": "NB34: 320 dual-mode evaluations on the clipped IoMT pipeline, no collapse. NB35 T1: clipping removes every CICIoT2023 collapse. NB42: the unclipped IoMT training rows carry 255 rows with |z| above 100 (largest 598.3, one-row batch-variance bound 350). The paper currently states the unclipped collapse as predicted, not observed; this notebook observes it or not",
+  "design": {
+    "corpus": "CIC-IoMT-2024 WiFi/MQTT, official training files only, exact duplicates removed, seeded 20% validation carve-out, exactly as src/saber/bridge_iomt.build_bridge and NB42; the official test files are never opened",
+    "preprocessing": "UNCLIPPED: features standardised with the mean and standard deviation of the unclipped training rows; no clipping anywhere; validation rows standardised with the same training statistics",
+    "reproduction_checks": "training rows must equal the bridge manifest n_train (3,612,063), class names must equal the bridge manifest class list, and the largest unclipped |z| must agree with NB42 (598.3) or the notebook stops",
+    "teacher": "shallow CNN1D (Conv 64, BN, Conv 128, BN, GAP, linear) trained on the unclipped rows with NB32's recipe: 4 full epochs, Adam 1e-3, batch 1,024, cross-entropy with class weights count^-0.5 (the clipped shallow teacher's exponent), seed 0; its dual-mode audit is recorded; if its own stored-over-batch gap exceeds 0.10 it is recalibrated before use and that is recorded; NB32's acceptance rule (b2a <= 0.10, attack recall >= 0.90, fine macro-F1 >= 0.50) is reported, not required",
+    "cells": "dense (the teacher itself) and fisher-pruned (NB33 frozen shallow Fisher 40% structure applied to the unclipped teacher, minimum 8 channels per layer) x seeds [101, 211, 307, 401, 503]; recovery: seeded 10% subset of the training rows, batches of 1,024, Adam 1e-3, the same class weights, BatchNorm momentum 0.1, 8 units; identical to NB31/NB34/NB35",
+    "audit": "at the end of every unit: stored-statistics evaluation and batch-statistics probe (training mode, batches of 8,192, momentum 0, running statistics restored) on the class-capped validation subsample (at most 4,000 rows per class, seed 0)",
+    "trace": "every batch of every run: largest |z| in the batch and largest BatchNorm running variance after the step; stored-statistics benign escalation every 25 batches",
+    "collapse_rule": "IoMT gap rule of NB34: eval-mode benign escalation minus batch-statistics benign escalation > 0.10; the CICIoT2023 absolute rule (eval > 0.10 and batch <= 0.10) is recorded alongside for reference",
+    "remedy": "every collapse snapshot is recalibrated with no gradient step on 50 batches of 1,024 training rows from one fixed slice (seed 2026, as NB34) and re-evaluated",
+    "late_landing": "the batch holding the largest |z| of a unit arrives within the last 25 batches of that unit (the decay window of equation (4) of the paper for momentum 0.1)"
+  },
+  "claims": {
+    "V1": "at least one normalisation collapse (gap rule) in the 80 unit evaluations (2 cells x 5 seeds x 8 units)",
+    "V2": "descriptive: per unit, the largest single-batch jump in the maximum running variance occurs at the batch holding the largest |z| of that unit; the jump size is reported beside the CICIoT2023 trace of NB35 (jumps 2.27 to 2.45 at |z| 1,390)",
+    "V3": "if V1 holds: recalibration brings every collapse snapshot's eval-mode benign escalation to within 0.02 of its batch-statistics value"
+  },
+  "readings": {
+    "V1_held": "unclipped_iomt_collapses: the paper's second-corpus sentence becomes an observation; the generality claim stands",
+    "V1_not_held_with_late_landing": "spike_too_small: the IoMT extreme rows inflate the variance but not enough to collapse at |z| 598; the paper must say so and tie the failure to the size of the extreme value",
+    "V1_not_held_without_late_landing": "untested_by_order: no extreme batch landed late in any unit; add order seeds before concluding"
+  },
+  "reporting_rule": "V1 and V3 reported as held or not held, V2 described; every unit row and every trace written either way",
+  "seeds": [
+    101,
+    211,
+    307,
+    401,
+    503
+  ],
+  "units": 8,
+  "subset_fraction": 0.1,
+  "batch_size": 1024,
+  "lr": 0.001,
+  "class_weight_exponent": 0.5,
+  "bn_momentum": 0.1,
+  "min_channels_per_layer": 8,
+  "collapse_gap": 0.1,
+  "cal_seed": 2026,
+  "no_test_access": true,
+  "no_new_selection": true
+}
