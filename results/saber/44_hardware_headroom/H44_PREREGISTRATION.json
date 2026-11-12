@@ -1,0 +1,23 @@
+{
+  "notebook": "44_hardware_headroom",
+  "question": "what do the NB40 structures at 70, 80 and 90% realised MAC reduction cost on a single CPU thread, measured the way NB36 measured the 40% structures: serialised size, parameter and activation footprint, and per-batch latency at batch 1 and batch 256",
+  "motivation": "NB36 timed only the frozen 40% structures. NB40 showed that the shallow and deep CICIoT2023 detectors recover to within 0.02 harm-weighted severity of dense at 90% after two full epochs; the cost side of that result is so far reported by realised MACs alone. This notebook measures the committed 70/80/90% structures so that cost and headroom are reported at the same budgets",
+  "design": {
+    "corpus": "CICIoT2023 only (41 features, 34 classes); no data is opened: latency and memory depend on the graph, not the weights, so every model is rebuilt from its committed structure with random weights (torch.manual_seed(0)), exactly as NB36",
+    "models": "per architecture the dense network plus 5 scoring rules x 4 budgets (40, 70, 80, 90%) = 21 models, 42 in all; structures read from results/saber/40_compression_headroom/N40_{arch}_{method}_b{budget}_removed_groups.csv; per-layer floors shallow 4 / deep 8 as in NB40; the shallow network is Conv 64, BN, Conv 128, BN, GAP, linear and the deep network is src.saber.deep_model.DeepCNN1D, as in NB40",
+    "device": "single CPU thread of the Colab runtime (x86), reported as a PROXY for constrained hardware; no edge board was available",
+    "measurements": {
+      "latency": "median and 99th percentile of per-batch wall time over 200 timed forward passes after 20 warm-up passes, for batch sizes 1 and 256, eval mode, no grad; the sweep over all 42 models is repeated in 3 rounds (each round: shallow dense, shallow students, deep dense, deep students) and the reported latency of a model is the median over rounds of its per-round median (p99 likewise); the between-round spread (max minus min of the per-round medians, divided by the reported median) is kept per model as a noise indicator and reported for the dense networks",
+      "memory": "parameter and buffer bytes, plus the summed bytes of every module output in one batch-256 forward pass captured by forward hooks (an upper bound on live activations)",
+      "size": "serialised state_dict size in KB",
+      "flops": "realised multiply-accumulates per flow from the surgery profiler, the same cost axis as NB40 and NB36"
+    }
+  },
+  "checks_that_stop_the_notebook": [
+    "the parameter count of every rebuilt model equals the parameters column of N40_structures.csv exactly",
+    "the realised reduction (1 - profiler MACs / dense MACs) agrees with N40_structures.csv realised_reduction within 1e-6",
+    "the 40% rows' parameters and MACs equal NB36 hardware_proxy.csv exactly (same frozen structures)"
+  ],
+  "reporting": "descriptive, no pass/fail: per architecture and budget, the range across the five rules of the size, parameter, activation, batch-1 and batch-256 latency ratios (student / dense), placed beside the realised MAC ratio; the 40% latency ratios are reported beside NB36's but are not required to match (different runtime day); the NB36 reading that batch-256 latency tracks MACs while batch-1 latency is dominated by framework overhead is re-examined at 70 to 90% and reported either way",
+  "no_test_access": true
+}
