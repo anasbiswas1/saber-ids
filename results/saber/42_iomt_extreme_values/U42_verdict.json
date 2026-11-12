@@ -1,0 +1,82 @@
+{
+  "arm": "U_unclipped_iomt_extreme_values",
+  "U1_unclipped_row_above_100": true,
+  "reading": "unclipped_has_extreme_rows",
+  "unclipped_iomt": {
+    "n_rows": 3612063,
+    "n_features": 45,
+    "features_with_max_abs_z_over_100": 7,
+    "features_with_max_abs_z_over_10": 31,
+    "rows_any_abs_z_over_10": 68275,
+    "rows_any_abs_z_over_100": 255,
+    "fraction_rows_any_abs_z_over_10": 0.01890194052540058,
+    "fraction_rows_any_abs_z_over_100": 7.059677530541411e-05,
+    "max_abs_z": 598.277900189554,
+    "max_abs_z_feature_index": 22,
+    "max_abs_z_row_index": 2265561,
+    "one_row_batch_variance_bound_1024": 350.5473104054901,
+    "max_abs_z_feature": "SSH",
+    "max_abs_z_row_class": "Recon-OS_Scan",
+    "rows_over_100_by_class": {
+      "Recon-OS_Scan": 98,
+      "Benign": 89,
+      "TCP_IP-DDoS-UDP": 43,
+      "TCP_IP-DoS-UDP": 11,
+      "MQTT-DDoS-Publish_Flood": 4,
+      "Recon-VulScan": 4,
+      "Recon-Port_Scan": 3,
+      "ARP_Spoofing": 3
+    }
+  },
+  "clipped_iomt_pipeline": {
+    "max_abs_z": 30.452901241392247,
+    "features_with_max_abs_z_over_100": 0,
+    "features_with_max_abs_z_over_10": 20,
+    "one_row_batch_variance_bound_1024": 1.9056437441581928
+  },
+  "ciciot2023_reference_nb35": {
+    "max_abs_z": 1390.4000244140625,
+    "features_with_max_abs_z_over_100": 9,
+    "fraction_rows_any_abs_z_over_100": 5.8521240134723485e-05,
+    "fraction_rows_any_abs_z_over_10": 0.010671152733266354,
+    "one_row_batch_variance_bound_1024": 1888.902566299439
+  },
+  "rows": {
+    "official_train": 7160831,
+    "after_dedup": 4515078,
+    "train_side": 3612063
+  },
+  "leakage_note": "leakage report present but not applied (columns ['feature', 'max_ovr_auc', 'mean_ovr_auc', 'disposition'])",
+  "prereg": {
+    "notebook": "42_iomt_extreme_values",
+    "question": "does the CIC-IoMT-2024 training corpus, standardised without clipping, contain rows as extreme as the CICIoT2023 rows that trigger the BatchNorm collapse (absolute standardised value above 100)",
+    "motivation": "notebook 34 found no normalisation collapse on CIC-IoMT-2024 under the CICIoT2023 recipe; the IoMT pipeline clips every feature to its 0.1/99.9 training percentiles, and notebook 35 (T1) showed clipping removes every CICIoT2023 collapse; the missing control is whether unclipped IoMT has the trigger rows at all",
+    "design": {
+      "corpus": "CIC-IoMT-2024 WiFi/MQTT, official training files only, exact duplicates removed, seeded 20% validation carve-out, exactly as src/saber/bridge_iomt.build_bridge; the official test files are never opened; training rows only",
+      "unclipped": "features standardised with the train-fitted mean and standard deviation of the UNCLIPPED training rows; no clipping",
+      "clipped": "the committed bridge manifest (clip_low, clip_high, scaler_mean, scaler_std) gives the clipped pipeline's bounds analytically",
+      "quantities": [
+        "per-feature maximum |z|",
+        "number of features with maximum |z| > 100",
+        "fraction of rows with any |z| > 10 and > 100",
+        "largest |z| and its feature",
+        "one-row batch-variance bound 1 + z^2/1024 for the largest value",
+        "the same for the clipped pipeline",
+        "CICIoT2023 reference values from notebook 35"
+      ],
+      "reproduction_check": "the number of training rows must equal manifest n_train (3,612,063) or the notebook stops"
+    },
+    "claims": {
+      "U1": "at least one unclipped IoMT training row has an absolute standardised value above 100"
+    },
+    "readings": {
+      "U1_held": "unclipped_has_extreme_rows: clipping is what protects the IoMT runs; the paper's generality sentence stands",
+      "U1_not_held": "unclipped_has_no_extreme_rows: the IoMT corpus is benign with or without clipping; soften the sentence to 'consistent with'"
+    },
+    "reporting_rule": "U1 reported as held or not held; every quantity written to the result files either way",
+    "no_test_access": true,
+    "no_new_selection": true,
+    "no_model": true,
+    "cpu_only": true
+  }
+}
