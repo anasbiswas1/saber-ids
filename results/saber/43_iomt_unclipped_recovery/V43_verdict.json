@@ -1,0 +1,230 @@
+{
+  "arm": "V_unclipped_iomt_recovery",
+  "V1_any_gap_collapse": false,
+  "V3_remedy_within_0.02": null,
+  "reading": "spike_too_small",
+  "unit_evaluations": 80,
+  "gap_rule_collapses": 0,
+  "absolute_rule_collapses": 0,
+  "collapse_units": [],
+  "max_gap_any_unit": -0.0594999999999999,
+  "max_eval_b2a_any_unit": 0.09125,
+  "final_unit": [
+    {
+      "tag": "dense/shallow/s101",
+      "eval_b2a": 0.065,
+      "batch_b2a": 0.275,
+      "eval_a2b": 0.0241705346398487,
+      "eval_family_f1": 0.7914643182313045,
+      "gap": -0.21
+    },
+    {
+      "tag": "dense/shallow/s211",
+      "eval_b2a": 0.057,
+      "batch_b2a": 0.214,
+      "eval_a2b": 0.0280728898057417,
+      "eval_family_f1": 0.7710160421911305,
+      "gap": -0.157
+    },
+    {
+      "tag": "dense/shallow/s307",
+      "eval_b2a": 0.05525,
+      "batch_b2a": 0.191,
+      "eval_a2b": 0.0268351383874849,
+      "eval_family_f1": 0.7937196424936519,
+      "gap": -0.13575
+    },
+    {
+      "tag": "dense/shallow/s401",
+      "eval_b2a": 0.0645,
+      "batch_b2a": 0.27675,
+      "eval_a2b": 0.0245315454701736,
+      "eval_family_f1": 0.7918376994952155,
+      "gap": -0.21225
+    },
+    {
+      "tag": "dense/shallow/s503",
+      "eval_b2a": 0.052,
+      "batch_b2a": 0.213,
+      "eval_a2b": 0.0275915420319752,
+      "eval_family_f1": 0.7937042905180363,
+      "gap": -0.161
+    },
+    {
+      "tag": "fisher/shallow/s101",
+      "eval_b2a": 0.083,
+      "batch_b2a": 0.252,
+      "eval_a2b": 0.0196664947567474,
+      "eval_family_f1": 0.7978183845944714,
+      "gap": -0.1689999999999999
+    },
+    {
+      "tag": "fisher/shallow/s211",
+      "eval_b2a": 0.06625,
+      "batch_b2a": 0.213,
+      "eval_a2b": 0.0239986247206463,
+      "eval_family_f1": 0.7852786213012387,
+      "gap": -0.14675
+    },
+    {
+      "tag": "fisher/shallow/s307",
+      "eval_b2a": 0.06,
+      "batch_b2a": 0.134,
+      "eval_a2b": 0.0260271617672339,
+      "eval_family_f1": 0.7865301431122146,
+      "gap": -0.074
+    },
+    {
+      "tag": "fisher/shallow/s401",
+      "eval_b2a": 0.07575,
+      "batch_b2a": 0.33,
+      "eval_a2b": 0.0226233453670276,
+      "eval_family_f1": 0.7941417640179447,
+      "gap": -0.25425
+    },
+    {
+      "tag": "fisher/shallow/s503",
+      "eval_b2a": 0.05725,
+      "batch_b2a": 0.19525,
+      "eval_a2b": 0.0283651366683857,
+      "eval_family_f1": 0.7837649711789746,
+      "gap": -0.138
+    }
+  ],
+  "trace": {
+    "units_traced": 80,
+    "late_landings": 4,
+    "late_landing_units": [
+      {
+        "tag": "dense/shallow/s101",
+        "unit": 6,
+        "max_abs_z": 416.9892272949219,
+        "max_abs_z_batch": 351,
+        "n_batches": 353,
+        "jump_at_max_abs_z_batch": -0.1316814422607422,
+        "final_var": 20.1650390625
+      },
+      {
+        "tag": "dense/shallow/s503",
+        "unit": 8,
+        "max_abs_z": 443.4442138671875,
+        "max_abs_z_batch": 333,
+        "n_batches": 353,
+        "jump_at_max_abs_z_batch": -0.40590476989746094,
+        "final_var": 17.984416961669922
+      },
+      {
+        "tag": "fisher/shallow/s101",
+        "unit": 6,
+        "max_abs_z": 416.9892272949219,
+        "max_abs_z_batch": 351,
+        "n_batches": 353,
+        "jump_at_max_abs_z_batch": -0.017547130584716797,
+        "final_var": 1.716277241706848
+      },
+      {
+        "tag": "fisher/shallow/s503",
+        "unit": 8,
+        "max_abs_z": 443.4442138671875,
+        "max_abs_z_batch": 333,
+        "n_batches": 353,
+        "jump_at_max_abs_z_batch": -0.05089092254638694,
+        "final_var": 1.2631993293762207
+      }
+    ],
+    "jump_rank_1_share": 0.0,
+    "jump_at_extreme_batch_median": -0.04026460647583008,
+    "jump_at_extreme_batch_max": 0.285308837890625,
+    "var_before_median": 11.927862405776978,
+    "subset_max_abs_z_by_seed": {
+      "101": 417.0,
+      "211": 417.0,
+      "307": 297.7,
+      "401": 342.5,
+      "503": 443.4
+    }
+  },
+  "ciciot2023_reference_nb35": {
+    "jump_at_extreme_batch_min": 2.255021333694458,
+    "jump_at_extreme_batch_max": 2.451709508895874,
+    "var_before_median": 0.3752295523881912,
+    "max_abs_z": 1390.3966064453125,
+    "late_landings": 2
+  },
+  "teacher": {
+    "recipe": "4 full epochs, Adam 1e-3, batch 1024, class weights count^-0.5, seed 0, UNCLIPPED inputs",
+    "as_trained_eval": {
+      "b2a": 0.07,
+      "a2b": 0.023379749011517965,
+      "attack_recall": 0.976620250988482,
+      "family_f1": 0.7903711810759747,
+      "fine_f1": 0.6800296533208602,
+      "ece": 0.050826255648190544
+    },
+    "as_trained_batch": {
+      "b2a": 0.1865,
+      "a2b": 0.021248066013408975,
+      "attack_recall": 0.978751933986591,
+      "family_f1": 0.7105504548836602,
+      "fine_f1": 0.6110242130352093,
+      "ece": 0.024851736208743026
+    },
+    "as_trained_gap": -0.11649999999999999,
+    "as_trained_bn_var_max": 23.273494720458984,
+    "recalibrated_before_use": false,
+    "meets_nb32_rule": true,
+    "clipped_teacher_reference_nb32": {
+      "b2a": 0.08725,
+      "a2b": 0.018429,
+      "fine_f1": 0.702181,
+      "family_f1": 0.802586
+    },
+    "checkpoint_sha256": "848c218231df17e1d51eb66235159efe7b92b601507964a7172985d830e90984"
+  },
+  "prereg": {
+    "notebook": "43_iomt_unclipped_recovery",
+    "question": "does a shallow IoMT detector, recovered on CIC-IoMT-2024 training rows standardised WITHOUT clipping under the CICIoT2023 recipe, show the BatchNorm normalisation collapse that the clipped IoMT pipeline never showed (NB34)",
+    "motivation": "NB34: 320 dual-mode evaluations on the clipped IoMT pipeline, no collapse. NB35 T1: clipping removes every CICIoT2023 collapse. NB42: the unclipped IoMT training rows carry 255 rows with |z| above 100 (largest 598.3, one-row batch-variance bound 350). The paper currently states the unclipped collapse as predicted, not observed; this notebook observes it or not",
+    "design": {
+      "corpus": "CIC-IoMT-2024 WiFi/MQTT, official training files only, exact duplicates removed, seeded 20% validation carve-out, exactly as src/saber/bridge_iomt.build_bridge and NB42; the official test files are never opened",
+      "preprocessing": "UNCLIPPED: features standardised with the mean and standard deviation of the unclipped training rows; no clipping anywhere; validation rows standardised with the same training statistics",
+      "reproduction_checks": "training rows must equal the bridge manifest n_train (3,612,063), class names must equal the bridge manifest class list, and the largest unclipped |z| must agree with NB42 (598.3) or the notebook stops",
+      "teacher": "shallow CNN1D (Conv 64, BN, Conv 128, BN, GAP, linear) trained on the unclipped rows with NB32's recipe: 4 full epochs, Adam 1e-3, batch 1,024, cross-entropy with class weights count^-0.5 (the clipped shallow teacher's exponent), seed 0; its dual-mode audit is recorded; if its own stored-over-batch gap exceeds 0.10 it is recalibrated before use and that is recorded; NB32's acceptance rule (b2a <= 0.10, attack recall >= 0.90, fine macro-F1 >= 0.50) is reported, not required",
+      "cells": "dense (the teacher itself) and fisher-pruned (NB33 frozen shallow Fisher 40% structure applied to the unclipped teacher, minimum 8 channels per layer) x seeds [101, 211, 307, 401, 503]; recovery: seeded 10% subset of the training rows, batches of 1,024, Adam 1e-3, the same class weights, BatchNorm momentum 0.1, 8 units; identical to NB31/NB34/NB35",
+      "audit": "at the end of every unit: stored-statistics evaluation and batch-statistics probe (training mode, batches of 8,192, momentum 0, running statistics restored) on the class-capped validation subsample (at most 4,000 rows per class, seed 0)",
+      "trace": "every batch of every run: largest |z| in the batch and largest BatchNorm running variance after the step; stored-statistics benign escalation every 25 batches",
+      "collapse_rule": "IoMT gap rule of NB34: eval-mode benign escalation minus batch-statistics benign escalation > 0.10; the CICIoT2023 absolute rule (eval > 0.10 and batch <= 0.10) is recorded alongside for reference",
+      "remedy": "every collapse snapshot is recalibrated with no gradient step on 50 batches of 1,024 training rows from one fixed slice (seed 2026, as NB34) and re-evaluated",
+      "late_landing": "the batch holding the largest |z| of a unit arrives within the last 25 batches of that unit (the decay window of equation (4) of the paper for momentum 0.1)"
+    },
+    "claims": {
+      "V1": "at least one normalisation collapse (gap rule) in the 80 unit evaluations (2 cells x 5 seeds x 8 units)",
+      "V2": "descriptive: per unit, the largest single-batch jump in the maximum running variance occurs at the batch holding the largest |z| of that unit; the jump size is reported beside the CICIoT2023 trace of NB35 (jumps 2.27 to 2.45 at |z| 1,390)",
+      "V3": "if V1 holds: recalibration brings every collapse snapshot's eval-mode benign escalation to within 0.02 of its batch-statistics value"
+    },
+    "readings": {
+      "V1_held": "unclipped_iomt_collapses: the paper's second-corpus sentence becomes an observation; the generality claim stands",
+      "V1_not_held_with_late_landing": "spike_too_small: the IoMT extreme rows inflate the variance but not enough to collapse at |z| 598; the paper must say so and tie the failure to the size of the extreme value",
+      "V1_not_held_without_late_landing": "untested_by_order: no extreme batch landed late in any unit; add order seeds before concluding"
+    },
+    "reporting_rule": "V1 and V3 reported as held or not held, V2 described; every unit row and every trace written either way",
+    "seeds": [
+      101,
+      211,
+      307,
+      401,
+      503
+    ],
+    "units": 8,
+    "subset_fraction": 0.1,
+    "batch_size": 1024,
+    "lr": 0.001,
+    "class_weight_exponent": 0.5,
+    "bn_momentum": 0.1,
+    "min_channels_per_layer": 8,
+    "collapse_gap": 0.1,
+    "cal_seed": 2026,
+    "no_test_access": true,
+    "no_new_selection": true
+  }
+}

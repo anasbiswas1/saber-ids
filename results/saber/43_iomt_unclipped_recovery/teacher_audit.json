@@ -1,0 +1,30 @@
+{
+  "recipe": "4 full epochs, Adam 1e-3, batch 1024, class weights count^-0.5, seed 0, UNCLIPPED inputs",
+  "as_trained_eval": {
+    "b2a": 0.07,
+    "a2b": 0.023379749011517965,
+    "attack_recall": 0.976620250988482,
+    "family_f1": 0.7903711810759747,
+    "fine_f1": 0.6800296533208602,
+    "ece": 0.050826255648190544
+  },
+  "as_trained_batch": {
+    "b2a": 0.1865,
+    "a2b": 0.021248066013408975,
+    "attack_recall": 0.978751933986591,
+    "family_f1": 0.7105504548836602,
+    "fine_f1": 0.6110242130352093,
+    "ece": 0.024851736208743026
+  },
+  "as_trained_gap": -0.11649999999999999,
+  "as_trained_bn_var_max": 23.273494720458984,
+  "recalibrated_before_use": false,
+  "meets_nb32_rule": true,
+  "clipped_teacher_reference_nb32": {
+    "b2a": 0.08725,
+    "a2b": 0.018429,
+    "fine_f1": 0.702181,
+    "family_f1": 0.802586
+  },
+  "checkpoint_sha256": "848c218231df17e1d51eb66235159efe7b92b601507964a7172985d830e90984"
+}
