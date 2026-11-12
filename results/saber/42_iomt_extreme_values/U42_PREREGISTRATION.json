@@ -1,0 +1,32 @@
+{
+  "notebook": "42_iomt_extreme_values",
+  "question": "does the CIC-IoMT-2024 training corpus, standardised without clipping, contain rows as extreme as the CICIoT2023 rows that trigger the BatchNorm collapse (absolute standardised value above 100)",
+  "motivation": "notebook 34 found no normalisation collapse on CIC-IoMT-2024 under the CICIoT2023 recipe; the IoMT pipeline clips every feature to its 0.1/99.9 training percentiles, and notebook 35 (T1) showed clipping removes every CICIoT2023 collapse; the missing control is whether unclipped IoMT has the trigger rows at all",
+  "design": {
+    "corpus": "CIC-IoMT-2024 WiFi/MQTT, official training files only, exact duplicates removed, seeded 20% validation carve-out, exactly as src/saber/bridge_iomt.build_bridge; the official test files are never opened; training rows only",
+    "unclipped": "features standardised with the train-fitted mean and standard deviation of the UNCLIPPED training rows; no clipping",
+    "clipped": "the committed bridge manifest (clip_low, clip_high, scaler_mean, scaler_std) gives the clipped pipeline's bounds analytically",
+    "quantities": [
+      "per-feature maximum |z|",
+      "number of features with maximum |z| > 100",
+      "fraction of rows with any |z| > 10 and > 100",
+      "largest |z| and its feature",
+      "one-row batch-variance bound 1 + z^2/1024 for the largest value",
+      "the same for the clipped pipeline",
+      "CICIoT2023 reference values from notebook 35"
+    ],
+    "reproduction_check": "the number of training rows must equal manifest n_train (3,612,063) or the notebook stops"
+  },
+  "claims": {
+    "U1": "at least one unclipped IoMT training row has an absolute standardised value above 100"
+  },
+  "readings": {
+    "U1_held": "unclipped_has_extreme_rows: clipping is what protects the IoMT runs; the paper's generality sentence stands",
+    "U1_not_held": "unclipped_has_no_extreme_rows: the IoMT corpus is benign with or without clipping; soften the sentence to 'consistent with'"
+  },
+  "reporting_rule": "U1 reported as held or not held; every quantity written to the result files either way",
+  "no_test_access": true,
+  "no_new_selection": true,
+  "no_model": true,
+  "cpu_only": true
+}
