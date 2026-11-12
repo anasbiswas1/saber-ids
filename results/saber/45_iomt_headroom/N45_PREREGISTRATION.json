@@ -1,0 +1,52 @@
+{
+  "notebook": "45_iomt_headroom",
+  "question": "on CIC-IoMT-2024, at what realised MAC reduction does a pruned detector, recovered and recalibrated, carry more ground-truth risk than the dense model recovered and recalibrated the same way; does the cheap pass lose attack families that the aggregate hides; and are the pruned detectors better or worse calibrated than the dense reference",
+  "motivation": "notebook 40 answered these on CICIoT2023 only (no headroom at 90% after two epochs on either network; a gap only at 90% under the cheap pass on the shallow network; rare families lost under the cheap pass; students better calibrated in 43 of 50 paired cells). A second corpus with a different feature set, class structure and preprocessing is the test of generality",
+  "design": {
+    "corpus": "CIC-IoMT-2024 WiFi/MQTT through the notebook 32 bridge: official train side only, exact duplicates removed, seeded 20% stratified validation carve-out, features clipped at the 0.1/99.9 training percentiles and standardised; 19 classes in 6 families, 45 features; the official test files are never opened",
+    "teachers": "the notebook 32 accepted teachers (shallow alpha 0.5, deep alpha 0.35), unchanged",
+    "scoring_rules": "random, L1 magnitude, Taylor, Fisher and the graph-weighted leverage score (saber_v2), orders rebuilt from the committed notebook 33 score tables with the notebook 33 ordering rule and the per-layer floor of 8 channels used on this corpus; the frozen notebook 33 40% structures must be prefixes of these orders or the notebook stops",
+    "budgets": "40% (frozen notebook 33 structures), 70%, 80%, 90% realised MAC reduction, prefixes calibrated within 1.5 points",
+    "cheap_recovery": "one pass over a seeded 10% subset of the training rows, batch 1,024, Adam 1e-3, cross-entropy with each teacher's own class-weight exponent, as notebook 34; seeds 101, 211, 307, 401, 503; dense reference recovered under the same seed and subset",
+    "full_recovery": "two epochs over all training rows, batch 1,024, same optimiser; seeds 101, 211, 307; at 90% only, with the dense reference",
+    "recalibration": "every recovered model: BatchNorm statistics re-estimated on the first 51,200 rows of a seed-2026 permutation of the training rows, weights frozen",
+    "evaluation": "primary: class-balanced subsample of the validation carve-out (at most 4,000 rows per class, seed 0, as notebooks 33 and 34); secondary, recalibrated models only: a 200,000-row natural-prior sample of the validation carve-out (seed 2026) for benign escalation, attack miss, fine macro-F1 and ECE",
+    "endpoints": "HSR under the balanced profile (primary), benign escalation E, attack miss M, family and fine macro-F1, per-family recall (benign, DDoS, DoS, MQTT, recon, spoofing), per-class recall, 15-bin equal-mass ECE and its sign (mean confidence minus accuracy); the collapse flag uses the IoMT gap rule of notebook 34 (eval-mode E exceeds batch-statistics E by more than 0.10)"
+  },
+  "gap_threshold": 0.02,
+  "gap_threshold_note": "the notebook 40 threshold, kept for comparability; on this corpus the within-rule seed range of recalibrated HSR at 40% in notebook 34 was 0.003 to 0.024 (median 0.013)",
+  "family_loss_threshold": 0.15,
+  "readings": {
+    "H1_cheap": "per network: the smallest budget in {70, 80, 90} at which the best rule (lowest mean recalibrated HSR) has mean paired gap >= 0.02 with the 95% paired t interval above zero; 'none' if no budget qualifies",
+    "H1_full_90": "per network: the same condition at 90% after two epochs (three seeds)",
+    "H2_rule_separation": "at each budget where H1_cheap holds: largest paired mean difference between two rules >= 0.02 with at least one Holm-corrected paired contrast significant at 0.05",
+    "F_family_loss": "per network and rule at 90% under the cheap pass: families whose mean recall is more than 0.15 below the dense reference's; 'repaired' if after two epochs no family of the four standard rules (random, magnitude, Taylor, Fisher) is more than 0.15 below the dense reference; leverage reported separately",
+    "C_calibration": "paired ECE (student minus dense, same seed) in every cell: counts of cells with the interval entirely below zero (student better), entirely above zero (worse) and straddling; the same on the natural-prior sample at 90% after two epochs"
+  },
+  "cross_corpus_expectations": {
+    "X1": "no headroom at 90% after two epochs on either network (H1_full_90 false for both)",
+    "X2": "pruned students better calibrated than the dense reference in at least half of the paired cells",
+    "X3": "the cheap pass at 90% loses at least one family (deficit > 0.15) on at least one network"
+  },
+  "reporting_rule": "every reading reported as measured; an expectation that fails changes the paper's generality statement, it is not dropped",
+  "seeds_cheap": [
+    101,
+    211,
+    307,
+    401,
+    503
+  ],
+  "seeds_full": [
+    101,
+    211,
+    307
+  ],
+  "budgets": [
+    0.4,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "no_test_access": true,
+  "no_new_selection": true
+}
