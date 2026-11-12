@@ -1,0 +1,629 @@
+{
+  "notebook": "44_hardware_headroom",
+  "cpu": "Intel(R) Xeon(R) CPU @ 2.20GHz",
+  "torch": "2.14.1+cpu",
+  "threads": 1,
+  "models_measured": 42,
+  "per_budget_ratio_ranges_over_rules": {
+    "deep/b40": {
+      "flops": [
+        0.5971,
+        0.5996
+      ],
+      "parameters": [
+        0.5304,
+        0.6971
+      ],
+      "size": [
+        0.5369,
+        0.7015
+      ],
+      "activations_b256": [
+        0.636,
+        0.7981
+      ],
+      "latency_b1": [
+        0.8188,
+        1.2303
+      ],
+      "latency_b256": [
+        0.6261,
+        0.7935
+      ],
+      "by_rule": {
+        "random": {
+          "flops": 0.5996,
+          "parameters": 0.6008,
+          "size": 0.6071,
+          "activations_b256": 0.7981,
+          "latency_b1": 0.8428,
+          "latency_b256": 0.7935
+        },
+        "magnitude": {
+          "flops": 0.5992,
+          "parameters": 0.6971,
+          "size": 0.7015,
+          "activations_b256": 0.636,
+          "latency_b1": 0.8188,
+          "latency_b256": 0.6384
+        },
+        "taylor": {
+          "flops": 0.5971,
+          "parameters": 0.5587,
+          "size": 0.5654,
+          "activations_b256": 0.7932,
+          "latency_b1": 0.8236,
+          "latency_b256": 0.7681
+        },
+        "fisher": {
+          "flops": 0.5983,
+          "parameters": 0.5586,
+          "size": 0.5649,
+          "activations_b256": 0.7695,
+          "latency_b1": 0.8533,
+          "latency_b256": 0.753
+        },
+        "saber_v2": {
+          "flops": 0.5991,
+          "parameters": 0.5304,
+          "size": 0.5369,
+          "activations_b256": 0.753,
+          "latency_b1": 1.2303,
+          "latency_b256": 0.6261
+        }
+      }
+    },
+    "deep/b70": {
+      "flops": [
+        0.2995,
+        0.3014
+      ],
+      "parameters": [
+        0.2067,
+        0.3731
+      ],
+      "size": [
+        0.2172,
+        0.3821
+      ],
+      "activations_b256": [
+        0.4289,
+        0.5584
+      ],
+      "latency_b1": [
+        0.6646,
+        0.9969
+      ],
+      "latency_b256": [
+        0.3374,
+        0.4368
+      ],
+      "by_rule": {
+        "random": {
+          "flops": 0.3006,
+          "parameters": 0.3078,
+          "size": 0.3179,
+          "activations_b256": 0.5547,
+          "latency_b1": 0.6674,
+          "latency_b256": 0.3374
+        },
+        "magnitude": {
+          "flops": 0.3014,
+          "parameters": 0.3731,
+          "size": 0.3821,
+          "activations_b256": 0.4289,
+          "latency_b1": 0.9839,
+          "latency_b256": 0.4343
+        },
+        "taylor": {
+          "flops": 0.2996,
+          "parameters": 0.2572,
+          "size": 0.2675,
+          "activations_b256": 0.5584,
+          "latency_b1": 0.6955,
+          "latency_b256": 0.4207
+        },
+        "fisher": {
+          "flops": 0.2995,
+          "parameters": 0.2453,
+          "size": 0.2556,
+          "activations_b256": 0.5452,
+          "latency_b1": 0.9969,
+          "latency_b256": 0.4133
+        },
+        "saber_v2": {
+          "flops": 0.3008,
+          "parameters": 0.2067,
+          "size": 0.2172,
+          "activations_b256": 0.5457,
+          "latency_b1": 0.6646,
+          "latency_b256": 0.4368
+        }
+      }
+    },
+    "deep/b80": {
+      "flops": [
+        0.1988,
+        0.2011
+      ],
+      "parameters": [
+        0.1178,
+        0.2564
+      ],
+      "size": [
+        0.1288,
+        0.2664
+      ],
+      "activations_b256": [
+        0.3714,
+        0.4549
+      ],
+      "latency_b1": [
+        0.6032,
+        0.8907
+      ],
+      "latency_b256": [
+        0.3296,
+        0.4664
+      ],
+      "by_rule": {
+        "random": {
+          "flops": 0.1996,
+          "parameters": 0.2094,
+          "size": 0.2199,
+          "activations_b256": 0.4487,
+          "latency_b1": 0.7507,
+          "latency_b256": 0.3525
+        },
+        "magnitude": {
+          "flops": 0.1988,
+          "parameters": 0.2564,
+          "size": 0.2664,
+          "activations_b256": 0.3714,
+          "latency_b1": 0.6074,
+          "latency_b256": 0.3337
+        },
+        "taylor": {
+          "flops": 0.2009,
+          "parameters": 0.1626,
+          "size": 0.1743,
+          "activations_b256": 0.4549,
+          "latency_b1": 0.613,
+          "latency_b256": 0.3477
+        },
+        "fisher": {
+          "flops": 0.2011,
+          "parameters": 0.152,
+          "size": 0.1634,
+          "activations_b256": 0.4527,
+          "latency_b1": 0.8907,
+          "latency_b256": 0.4664
+        },
+        "saber_v2": {
+          "flops": 0.2006,
+          "parameters": 0.1178,
+          "size": 0.1288,
+          "activations_b256": 0.4508,
+          "latency_b1": 0.6032,
+          "latency_b256": 0.3296
+        }
+      }
+    },
+    "deep/b90": {
+      "flops": [
+        0.0992,
+        0.101
+      ],
+      "parameters": [
+        0.0602,
+        0.1421
+      ],
+      "size": [
+        0.0718,
+        0.1542
+      ],
+      "activations_b256": [
+        0.3042,
+        0.3296
+      ],
+      "latency_b1": [
+        0.5309,
+        0.8499
+      ],
+      "latency_b256": [
+        0.1445,
+        0.2281
+      ],
+      "by_rule": {
+        "random": {
+          "flops": 0.0999,
+          "parameters": 0.1087,
+          "size": 0.1208,
+          "activations_b256": 0.3296,
+          "latency_b1": 0.5482,
+          "latency_b256": 0.1539
+        },
+        "magnitude": {
+          "flops": 0.0992,
+          "parameters": 0.1421,
+          "size": 0.1542,
+          "activations_b256": 0.3042,
+          "latency_b1": 0.5309,
+          "latency_b256": 0.2281
+        },
+        "taylor": {
+          "flops": 0.1004,
+          "parameters": 0.0761,
+          "size": 0.0882,
+          "activations_b256": 0.3205,
+          "latency_b1": 0.8499,
+          "latency_b256": 0.2178
+        },
+        "fisher": {
+          "flops": 0.101,
+          "parameters": 0.0686,
+          "size": 0.0803,
+          "activations_b256": 0.3175,
+          "latency_b1": 0.5535,
+          "latency_b256": 0.1458
+        },
+        "saber_v2": {
+          "flops": 0.0997,
+          "parameters": 0.0602,
+          "size": 0.0718,
+          "activations_b256": 0.3121,
+          "latency_b1": 0.5728,
+          "latency_b256": 0.1445
+        }
+      }
+    },
+    "shallow/b40": {
+      "flops": [
+        0.5955,
+        0.6029
+      ],
+      "parameters": [
+        0.6062,
+        0.6589
+      ],
+      "size": [
+        0.6241,
+        0.6767
+      ],
+      "activations_b256": [
+        0.7341,
+        0.8655
+      ],
+      "latency_b1": [
+        0.88,
+        1.3202
+      ],
+      "latency_b256": [
+        0.4891,
+        0.665
+      ],
+      "by_rule": {
+        "random": {
+          "flops": 0.6002,
+          "parameters": 0.6299,
+          "size": 0.6511,
+          "activations_b256": 0.7764,
+          "latency_b1": 1.3202,
+          "latency_b256": 0.5196
+        },
+        "magnitude": {
+          "flops": 0.5955,
+          "parameters": 0.6589,
+          "size": 0.6767,
+          "activations_b256": 0.8655,
+          "latency_b1": 0.8808,
+          "latency_b256": 0.5651
+        },
+        "taylor": {
+          "flops": 0.5989,
+          "parameters": 0.6219,
+          "size": 0.6409,
+          "activations_b256": 0.7606,
+          "latency_b1": 0.8845,
+          "latency_b256": 0.665
+        },
+        "fisher": {
+          "flops": 0.6008,
+          "parameters": 0.6062,
+          "size": 0.6241,
+          "activations_b256": 0.7341,
+          "latency_b1": 1.2684,
+          "latency_b256": 0.4926
+        },
+        "saber_v2": {
+          "flops": 0.6029,
+          "parameters": 0.6068,
+          "size": 0.6246,
+          "activations_b256": 0.7341,
+          "latency_b1": 0.88,
+          "latency_b256": 0.4891
+        }
+      }
+    },
+    "shallow/b70": {
+      "flops": [
+        0.2978,
+        0.3022
+      ],
+      "parameters": [
+        0.3062,
+        0.4097
+      ],
+      "size": [
+        0.338,
+        0.4392
+      ],
+      "activations_b256": [
+        0.5205,
+        0.7672
+      ],
+      "latency_b1": [
+        0.7695,
+        1.4195
+      ],
+      "latency_b256": [
+        0.1927,
+        0.6004
+      ],
+      "by_rule": {
+        "random": {
+          "flops": 0.3012,
+          "parameters": 0.3372,
+          "size": 0.3697,
+          "activations_b256": 0.537,
+          "latency_b1": 0.7695,
+          "latency_b256": 0.2039
+        },
+        "magnitude": {
+          "flops": 0.2999,
+          "parameters": 0.4097,
+          "size": 0.4392,
+          "activations_b256": 0.7672,
+          "latency_b1": 0.8033,
+          "latency_b256": 0.6004
+        },
+        "taylor": {
+          "flops": 0.2978,
+          "parameters": 0.3378,
+          "size": 0.3702,
+          "activations_b256": 0.5423,
+          "latency_b1": 1.4195,
+          "latency_b256": 0.2116
+        },
+        "fisher": {
+          "flops": 0.3022,
+          "parameters": 0.3109,
+          "size": 0.3426,
+          "activations_b256": 0.5205,
+          "latency_b1": 0.8255,
+          "latency_b256": 0.1995
+        },
+        "saber_v2": {
+          "flops": 0.3004,
+          "parameters": 0.3062,
+          "size": 0.338,
+          "activations_b256": 0.5255,
+          "latency_b1": 0.7814,
+          "latency_b256": 0.1927
+        }
+      }
+    },
+    "shallow/b80": {
+      "flops": [
+        0.1992,
+        0.2065
+      ],
+      "parameters": [
+        0.2087,
+        0.331
+      ],
+      "size": [
+        0.2445,
+        0.3625
+      ],
+      "activations_b256": [
+        0.432,
+        0.7362
+      ],
+      "latency_b1": [
+        0.7628,
+        1.418
+      ],
+      "latency_b256": [
+        0.1328,
+        0.3687
+      ],
+      "by_rule": {
+        "random": {
+          "flops": 0.2024,
+          "parameters": 0.2358,
+          "size": 0.2701,
+          "activations_b256": 0.4329,
+          "latency_b1": 0.7695,
+          "latency_b256": 0.1328
+        },
+        "magnitude": {
+          "flops": 0.2065,
+          "parameters": 0.331,
+          "size": 0.3625,
+          "activations_b256": 0.7362,
+          "latency_b1": 0.7933,
+          "latency_b256": 0.3687
+        },
+        "taylor": {
+          "flops": 0.2012,
+          "parameters": 0.2406,
+          "size": 0.2747,
+          "activations_b256": 0.4435,
+          "latency_b1": 0.7628,
+          "latency_b256": 0.2123
+        },
+        "fisher": {
+          "flops": 0.1992,
+          "parameters": 0.2096,
+          "size": 0.2456,
+          "activations_b256": 0.432,
+          "latency_b1": 1.1054,
+          "latency_b256": 0.2026
+        },
+        "saber_v2": {
+          "flops": 0.2028,
+          "parameters": 0.2087,
+          "size": 0.2445,
+          "activations_b256": 0.4577,
+          "latency_b1": 1.418,
+          "latency_b256": 0.2231
+        }
+      }
+    },
+    "shallow/b90": {
+      "flops": [
+        0.097,
+        0.101
+      ],
+      "parameters": [
+        0.1037,
+        0.2392
+      ],
+      "size": [
+        0.1434,
+        0.2762
+      ],
+      "activations_b256": [
+        0.3029,
+        0.7
+      ],
+      "latency_b1": [
+        0.7085,
+        0.7592
+      ],
+      "latency_b256": [
+        0.0953,
+        0.3258
+      ],
+      "by_rule": {
+        "random": {
+          "flops": 0.101,
+          "parameters": 0.1306,
+          "size": 0.1705,
+          "activations_b256": 0.3029,
+          "latency_b1": 0.7183,
+          "latency_b256": 0.0953
+        },
+        "magnitude": {
+          "flops": 0.0976,
+          "parameters": 0.2392,
+          "size": 0.2762,
+          "activations_b256": 0.7,
+          "latency_b1": 0.7449,
+          "latency_b256": 0.3258
+        },
+        "taylor": {
+          "flops": 0.1002,
+          "parameters": 0.1357,
+          "size": 0.1746,
+          "activations_b256": 0.3135,
+          "latency_b1": 0.7085,
+          "latency_b256": 0.0965
+        },
+        "fisher": {
+          "flops": 0.097,
+          "parameters": 0.1056,
+          "size": 0.146,
+          "activations_b256": 0.3383,
+          "latency_b1": 0.7272,
+          "latency_b256": 0.1104
+        },
+        "saber_v2": {
+          "flops": 0.0976,
+          "parameters": 0.1037,
+          "size": 0.1434,
+          "activations_b256": 0.3847,
+          "latency_b1": 0.7592,
+          "latency_b256": 0.1286
+        }
+      }
+    }
+  },
+  "tracking_at_70_90": {
+    "b256_minus_flops_ratio_range": [
+      -0.1077,
+      0.3006
+    ],
+    "b1_minus_flops_ratio_range": [
+      0.3638,
+      1.2152
+    ],
+    "b256_closer_than_b1_share": 1.0
+  },
+  "dense_absolute": {
+    "shallow": {
+      "parameters": 29730,
+      "size_kb": 122.4,
+      "latency_ms_b1_median": 0.226,
+      "latency_ms_b256_median": 34.59,
+      "activations_mb_b256": 24.35
+    },
+    "deep": {
+      "parameters": 182690,
+      "size_kb": 725.9,
+      "latency_ms_b1_median": 0.554,
+      "latency_ms_b256_median": 62.49,
+      "activations_mb_b256": 50.69
+    }
+  },
+  "nb36_crosscheck": {
+    "parameters_and_macs_equal": true,
+    "max_abs_diff_b1_ratio": 0.4974,
+    "max_abs_diff_b256_ratio": 0.2186
+  },
+  "round_spread": {
+    "rounds": 3,
+    "dense": {
+      "shallow": {
+        "b1": 0.6825,
+        "b256": 0.2725
+      },
+      "deep": {
+        "b1": 0.0721,
+        "b256": 0.0071
+      }
+    },
+    "students_max": {
+      "b1": 0.8499,
+      "b256": 0.5494
+    },
+    "students_median": {
+      "b1": 0.0635,
+      "b256": 0.0313
+    }
+  },
+  "prereg": {
+    "notebook": "44_hardware_headroom",
+    "question": "what do the NB40 structures at 70, 80 and 90% realised MAC reduction cost on a single CPU thread, measured the way NB36 measured the 40% structures: serialised size, parameter and activation footprint, and per-batch latency at batch 1 and batch 256",
+    "motivation": "NB36 timed only the frozen 40% structures. NB40 showed that the shallow and deep CICIoT2023 detectors recover to within 0.02 harm-weighted severity of dense at 90% after two full epochs; the cost side of that result is so far reported by realised MACs alone. This notebook measures the committed 70/80/90% structures so that cost and headroom are reported at the same budgets",
+    "design": {
+      "corpus": "CICIoT2023 only (41 features, 34 classes); no data is opened: latency and memory depend on the graph, not the weights, so every model is rebuilt from its committed structure with random weights (torch.manual_seed(0)), exactly as NB36",
+      "models": "per architecture the dense network plus 5 scoring rules x 4 budgets (40, 70, 80, 90%) = 21 models, 42 in all; structures read from results/saber/40_compression_headroom/N40_{arch}_{method}_b{budget}_removed_groups.csv; per-layer floors shallow 4 / deep 8 as in NB40; the shallow network is Conv 64, BN, Conv 128, BN, GAP, linear and the deep network is src.saber.deep_model.DeepCNN1D, as in NB40",
+      "device": "single CPU thread of the Colab runtime (x86), reported as a PROXY for constrained hardware; no edge board was available",
+      "measurements": {
+        "latency": "median and 99th percentile of per-batch wall time over 200 timed forward passes after 20 warm-up passes, for batch sizes 1 and 256, eval mode, no grad; the sweep over all 42 models is repeated in 3 rounds (each round: shallow dense, shallow students, deep dense, deep students) and the reported latency of a model is the median over rounds of its per-round median (p99 likewise); the between-round spread (max minus min of the per-round medians, divided by the reported median) is kept per model as a noise indicator and reported for the dense networks",
+        "memory": "parameter and buffer bytes, plus the summed bytes of every module output in one batch-256 forward pass captured by forward hooks (an upper bound on live activations)",
+        "size": "serialised state_dict size in KB",
+        "flops": "realised multiply-accumulates per flow from the surgery profiler, the same cost axis as NB40 and NB36"
+      }
+    },
+    "checks_that_stop_the_notebook": [
+      "the parameter count of every rebuilt model equals the parameters column of N40_structures.csv exactly",
+      "the realised reduction (1 - profiler MACs / dense MACs) agrees with N40_structures.csv realised_reduction within 1e-6",
+      "the 40% rows' parameters and MACs equal NB36 hardware_proxy.csv exactly (same frozen structures)"
+    ],
+    "reporting": "descriptive, no pass/fail: per architecture and budget, the range across the five rules of the size, parameter, activation, batch-1 and batch-256 latency ratios (student / dense), placed beside the realised MAC ratio; the 40% latency ratios are reported beside NB36's but are not required to match (different runtime day); the NB36 reading that batch-256 latency tracks MACs while batch-1 latency is dominated by framework overhead is re-examined at 70 to 90% and reported either way",
+    "no_test_access": true
+  }
+}
