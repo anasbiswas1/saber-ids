@@ -1,0 +1,158 @@
+{
+  "notebook": "49_iomt_unseen_recon_seeds",
+  "by_architecture": {
+    "shallow": {
+      "reading": "mixed",
+      "by_rule": {
+        "magnitude": "level",
+        "fisher": "level"
+      }
+    },
+    "deep": {
+      "reading": "mixed",
+      "by_rule": {
+        "magnitude": "level",
+        "fisher": "level"
+      }
+    }
+  },
+  "expectation": {
+    "Z1_fisher_less_on_some_network": false
+  },
+  "cells": [
+    {
+      "architecture": "shallow",
+      "method": "magnitude",
+      "n_seeds": 9,
+      "dense_unseen_detect": 0.2113,
+      "student_unseen_detect": 0.1882,
+      "gap": 0.0231,
+      "gap_lo": -0.0812,
+      "gap_hi": 0.1275,
+      "seeds_student_lower": 6,
+      "gap3": 0.0314,
+      "gap3_lo": -0.3411,
+      "gap3_hi": 0.4039,
+      "matched": true,
+      "hsr_gap_student_minus_dense": 0.0141,
+      "seen_E_diff_student_minus_dense": 0.0103,
+      "reading": "level",
+      "dense_to_benign": 0.7887,
+      "student_to_benign": 0.8118,
+      "dense_attack_mass": 0.4067,
+      "student_attack_mass": 0.3794
+    },
+    {
+      "architecture": "shallow",
+      "method": "fisher",
+      "n_seeds": 9,
+      "dense_unseen_detect": 0.2113,
+      "student_unseen_detect": 0.4066,
+      "gap": -0.1953,
+      "gap_lo": -0.4069,
+      "gap_hi": 0.0163,
+      "seeds_student_lower": 3,
+      "gap3": 0.1345,
+      "gap3_lo": -0.041,
+      "gap3_hi": 0.31,
+      "matched": true,
+      "hsr_gap_student_minus_dense": 0.0128,
+      "seen_E_diff_student_minus_dense": 0.0119,
+      "reading": "level",
+      "dense_to_benign": 0.7887,
+      "student_to_benign": 0.5934,
+      "dense_attack_mass": 0.4067,
+      "student_attack_mass": 0.5113
+    },
+    {
+      "architecture": "deep",
+      "method": "magnitude",
+      "n_seeds": 9,
+      "dense_unseen_detect": 0.5205,
+      "student_unseen_detect": 0.3481,
+      "gap": 0.1725,
+      "gap_lo": -0.1359,
+      "gap_hi": 0.4808,
+      "seeds_student_lower": 6,
+      "gap3": 0.2218,
+      "gap3_lo": -0.6751,
+      "gap3_hi": 1.1187,
+      "matched": true,
+      "hsr_gap_student_minus_dense": 0.0019,
+      "seen_E_diff_student_minus_dense": -0.0024,
+      "reading": "level",
+      "dense_to_benign": 0.4795,
+      "student_to_benign": 0.6519,
+      "dense_attack_mass": 0.5774,
+      "student_attack_mass": 0.4822
+    },
+    {
+      "architecture": "deep",
+      "method": "fisher",
+      "n_seeds": 9,
+      "dense_unseen_detect": 0.5205,
+      "student_unseen_detect": 0.4197,
+      "gap": 0.1008,
+      "gap_lo": -0.1676,
+      "gap_hi": 0.3692,
+      "seeds_student_lower": 6,
+      "gap3": 0.3204,
+      "gap3_lo": -0.0513,
+      "gap3_hi": 0.6921,
+      "matched": true,
+      "hsr_gap_student_minus_dense": 0.0061,
+      "seen_E_diff_student_minus_dense": -0.0021,
+      "reading": "level",
+      "dense_to_benign": 0.4795,
+      "student_to_benign": 0.5803,
+      "dense_attack_mass": 0.5774,
+      "student_attack_mass": 0.5558
+    }
+  ],
+  "excluded_cells": [],
+  "teachers_accepted": 12,
+  "teachers": 12,
+  "prereg": {
+    "notebook": "49_iomt_unseen_recon_seeds",
+    "question": "on CIC-IoMT-2024, with nine seeds instead of three, does a pruned and recovered detector raise unseen reconnaissance less often, more often, or as often as the dense detector trained and recovered the same way, at matched in-distribution risk",
+    "motivation": "notebook 47 (three seeds): Fisher students raised unseen reconnaissance less on every seed (shallow 9.2% vs 22.7%, deep 19.5% vs 51.5%), magnitude students less on two seeds of three, no interval excluding zero; on CICIoT2023 (notebook 41, five seeds) the magnitude students raised it more on both networks",
+    "design": {
+      "protocol": "notebook 47 unchanged: same bridge, Setting construction, teacher training, acceptance rule, dense reference, scoring, prefix calibration, recovery, recalibration and audit",
+      "held_out_families": [
+        "recon"
+      ],
+      "seeds": [
+        401,
+        503,
+        601,
+        701,
+        809,
+        907
+      ],
+      "pooling": "notebook 47's reconnaissance rows (seeds 101, 211, 307) plus this notebook's rows; paired by seed; nine seeds per network and rule",
+      "acceptance_rule": "notebook 47's: benign escalation <= 0.15, attack recall >= 0.85, fine macro-F1 >= 0.40 on the remaining classes after recalibration; failing cells excluded and listed"
+    },
+    "readings": {
+      "less": "per network and rule: the paired gap (dense minus student, share raised as attack) is at least 0.05 with its 95% interval above zero and the cell is matched (mean paired in-distribution HSR difference within 0.02): the student raises the family less",
+      "more": "per network and rule: the paired gap is negative with its 95% interval below zero: the student raises the family more",
+      "level": "neither: the interval contains zero or the mean is below 0.05",
+      "per_network": "pruned_raise_less if both rules read less; pruned_raise_more if both read more; mixed otherwise"
+    },
+    "expectation": {
+      "Z1": "the Fisher student reads 'less' on at least one network (the three-seed direction holds)"
+    },
+    "reporting_rule": "every cell reported as measured; whichever way it reads, Section V of the paper states it",
+    "budgets": [
+      0.9
+    ],
+    "methods": [
+      "magnitude",
+      "fisher"
+    ],
+    "gap_threshold": 0.05,
+    "match_threshold": 0.02,
+    "teacher_epochs": 4,
+    "recovery_epochs": 2,
+    "no_test_access": true
+  }
+}
