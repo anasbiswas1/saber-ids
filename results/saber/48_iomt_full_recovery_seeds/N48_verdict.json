@@ -1,0 +1,412 @@
+{
+  "notebook": "48_iomt_full_recovery_seeds",
+  "by_architecture": {
+    "shallow": {
+      "H_headroom": false,
+      "best_rule": "random",
+      "admitted": [
+        "random",
+        "taylor"
+      ],
+      "all_intervals_above_zero": true,
+      "S_max_abs_difference": 0.011164870516326142,
+      "S_n_holm_significant": 3,
+      "contrasts": [
+        {
+          "contrast": "random-magnitude",
+          "mean": -0.011164870516326142,
+          "p": 0.002258291463709787,
+          "p_holm": 0.02258291463709787,
+          "significant_holm": true
+        },
+        {
+          "contrast": "random-taylor",
+          "mean": -0.004273443783175124,
+          "p": 0.026660671645464578,
+          "p_holm": 0.15996402987278746,
+          "significant_holm": false
+        },
+        {
+          "contrast": "random-fisher",
+          "mean": -0.004676210390863739,
+          "p": 0.017375294507317302,
+          "p_holm": 0.12162706155122112,
+          "significant_holm": false
+        },
+        {
+          "contrast": "random-saber_v2",
+          "mean": -0.00465562168248348,
+          "p": 0.0029087701244222535,
+          "p_holm": 0.026178931119800283,
+          "significant_holm": true
+        },
+        {
+          "contrast": "magnitude-taylor",
+          "mean": 0.006891426733151018,
+          "p": 0.039929006798269044,
+          "p_holm": 0.17285885247608862,
+          "significant_holm": false
+        },
+        {
+          "contrast": "magnitude-fisher",
+          "mean": 0.006488660125462403,
+          "p": 0.005980152588402939,
+          "p_holm": 0.04784122070722351,
+          "significant_holm": true
+        },
+        {
+          "contrast": "magnitude-saber_v2",
+          "mean": 0.006509248833842662,
+          "p": 0.03457177049521772,
+          "p_holm": 0.17285885247608862,
+          "significant_holm": false
+        },
+        {
+          "contrast": "taylor-fisher",
+          "mean": -0.00040276660768861496,
+          "p": 0.7723889358960454,
+          "p_holm": 1.0,
+          "significant_holm": false
+        },
+        {
+          "contrast": "taylor-saber_v2",
+          "mean": -0.0003821778993083558,
+          "p": 0.6029369023130577,
+          "p_holm": 1.0,
+          "significant_holm": false
+        },
+        {
+          "contrast": "fisher-saber_v2",
+          "mean": 2.058870838025917e-05,
+          "p": 0.9873313622726314,
+          "p_holm": 1.0,
+          "significant_holm": false
+        }
+      ],
+      "C_better": 0,
+      "C_worse": 0,
+      "C_nat_better": 0,
+      "C_nat_worse": 0,
+      "rules": {
+        "random": {
+          "gap5": 0.0081,
+          "gap5_lo": 0.0045,
+          "gap5_hi": 0.0117,
+          "gap3": 0.0069,
+          "gap3_lo": 0.0012,
+          "gap3_hi": 0.0127,
+          "E": 0.0797,
+          "E_dense": 0.0685,
+          "E_diff": 0.0112,
+          "M_diff": 0.0038,
+          "max_family_deficit": 0.0188,
+          "worst_family": "dos",
+          "admitted": true,
+          "ece_gap": -0.0117,
+          "ece_gap_lo": -0.0244,
+          "ece_gap_hi": 0.001
+        },
+        "magnitude": {
+          "gap5": 0.0193,
+          "gap5_lo": 0.0147,
+          "gap5_hi": 0.0239,
+          "gap3": 0.0191,
+          "gap3_lo": 0.0063,
+          "gap3_hi": 0.0318,
+          "E": 0.0653,
+          "E_dense": 0.0685,
+          "E_diff": -0.0033,
+          "M_diff": 0.0058,
+          "max_family_deficit": 0.0923,
+          "worst_family": "dos",
+          "admitted": false,
+          "ece_gap": 0.0111,
+          "ece_gap_lo": -0.0004,
+          "ece_gap_hi": 0.0226
+        },
+        "taylor": {
+          "gap5": 0.0124,
+          "gap5_lo": 0.0079,
+          "gap5_hi": 0.0169,
+          "gap3": 0.0102,
+          "gap3_lo": 0.0029,
+          "gap3_hi": 0.0176,
+          "E": 0.0819,
+          "E_dense": 0.0685,
+          "E_diff": 0.0134,
+          "M_diff": 0.0031,
+          "max_family_deficit": 0.1013,
+          "worst_family": "ddos",
+          "admitted": true,
+          "ece_gap": 0.004,
+          "ece_gap_lo": -0.0101,
+          "ece_gap_hi": 0.0181
+        },
+        "fisher": {
+          "gap5": 0.0128,
+          "gap5_lo": 0.0096,
+          "gap5_hi": 0.016,
+          "gap3": 0.0114,
+          "gap3_lo": 0.0062,
+          "gap3_hi": 0.0166,
+          "E": 0.0942,
+          "E_dense": 0.0685,
+          "E_diff": 0.0257,
+          "M_diff": 0.0024,
+          "max_family_deficit": 0.0645,
+          "worst_family": "ddos",
+          "admitted": false,
+          "ece_gap": 0.0044,
+          "ece_gap_lo": -0.0201,
+          "ece_gap_hi": 0.0289
+        },
+        "saber_v2": {
+          "gap5": 0.0128,
+          "gap5_lo": 0.0093,
+          "gap5_hi": 0.0162,
+          "gap3": 0.0112,
+          "gap3_lo": 0.0071,
+          "gap3_hi": 0.0152,
+          "E": 0.0924,
+          "E_dense": 0.0685,
+          "E_diff": 0.0239,
+          "M_diff": 0.0034,
+          "max_family_deficit": 0.0812,
+          "worst_family": "ddos",
+          "admitted": false,
+          "ece_gap": -0.0036,
+          "ece_gap_lo": -0.0233,
+          "ece_gap_hi": 0.0161
+        }
+      }
+    },
+    "deep": {
+      "H_headroom": false,
+      "best_rule": "random",
+      "admitted": [
+        "random",
+        "magnitude",
+        "fisher"
+      ],
+      "all_intervals_above_zero": false,
+      "S_max_abs_difference": 0.01333440566189482,
+      "S_n_holm_significant": 0,
+      "contrasts": [
+        {
+          "contrast": "random-magnitude",
+          "mean": -0.005622004182081408,
+          "p": 0.06071169469970818,
+          "p_holm": 0.6071169469970817,
+          "significant_holm": false
+        },
+        {
+          "contrast": "random-taylor",
+          "mean": -0.006984719317999063,
+          "p": 0.3118621569156587,
+          "p_holm": 1.0,
+          "significant_holm": false
+        },
+        {
+          "contrast": "random-fisher",
+          "mean": -0.0037567958822583456,
+          "p": 0.34630614480192495,
+          "p_holm": 1.0,
+          "significant_holm": false
+        },
+        {
+          "contrast": "random-saber_v2",
+          "mean": -0.01333440566189482,
+          "p": 0.10698931690027856,
+          "p_holm": 0.9629038521025071,
+          "significant_holm": false
+        },
+        {
+          "contrast": "magnitude-taylor",
+          "mean": -0.0013627151359176554,
+          "p": 0.8232964673751278,
+          "p_holm": 1.0,
+          "significant_holm": false
+        },
+        {
+          "contrast": "magnitude-fisher",
+          "mean": 0.0018652082998230624,
+          "p": 0.6584360004653473,
+          "p_holm": 1.0,
+          "significant_holm": false
+        },
+        {
+          "contrast": "magnitude-saber_v2",
+          "mean": -0.007712401479813414,
+          "p": 0.16486184936015771,
+          "p_holm": 1.0,
+          "significant_holm": false
+        },
+        {
+          "contrast": "taylor-fisher",
+          "mean": 0.0032279234357407175,
+          "p": 0.6169807706963762,
+          "p_holm": 1.0,
+          "significant_holm": false
+        },
+        {
+          "contrast": "taylor-saber_v2",
+          "mean": -0.006349686343895758,
+          "p": 0.4638720944164666,
+          "p_holm": 1.0,
+          "significant_holm": false
+        },
+        {
+          "contrast": "fisher-saber_v2",
+          "mean": -0.009577609779636476,
+          "p": 0.301303657565049,
+          "p_holm": 1.0,
+          "significant_holm": false
+        }
+      ],
+      "C_better": 0,
+      "C_worse": 0,
+      "C_nat_better": 0,
+      "C_nat_worse": 1,
+      "rules": {
+        "random": {
+          "gap5": -0.0052,
+          "gap5_lo": -0.0169,
+          "gap5_hi": 0.0065,
+          "gap3": -0.0038,
+          "gap3_lo": -0.0323,
+          "gap3_hi": 0.0247,
+          "E": 0.0486,
+          "E_dense": 0.0436,
+          "E_diff": 0.005,
+          "M_diff": 0.001,
+          "max_family_deficit": 0.131,
+          "worst_family": "ddos",
+          "admitted": true,
+          "ece_gap": -0.0038,
+          "ece_gap_lo": -0.0263,
+          "ece_gap_hi": 0.0187
+        },
+        "magnitude": {
+          "gap5": 0.0004,
+          "gap5_lo": -0.0094,
+          "gap5_hi": 0.0103,
+          "gap3": 0.0012,
+          "gap3_lo": -0.0212,
+          "gap3_hi": 0.0236,
+          "E": 0.0468,
+          "E_dense": 0.0436,
+          "E_diff": 0.0032,
+          "M_diff": 0.0025,
+          "max_family_deficit": 0.102,
+          "worst_family": "ddos",
+          "admitted": true,
+          "ece_gap": -0.0106,
+          "ece_gap_lo": -0.0248,
+          "ece_gap_hi": 0.0035
+        },
+        "taylor": {
+          "gap5": 0.0018,
+          "gap5_lo": -0.0167,
+          "gap5_hi": 0.0203,
+          "gap3": 0.0116,
+          "gap3_lo": -0.0093,
+          "gap3_hi": 0.0326,
+          "E": 0.0514,
+          "E_dense": 0.0436,
+          "E_diff": 0.0078,
+          "M_diff": 0.0011,
+          "max_family_deficit": 0.0325,
+          "worst_family": "dos",
+          "admitted": false,
+          "ece_gap": -0.0043,
+          "ece_gap_lo": -0.024,
+          "ece_gap_hi": 0.0155
+        },
+        "fisher": {
+          "gap5": -0.0014,
+          "gap5_lo": -0.0097,
+          "gap5_hi": 0.0069,
+          "gap3": 0.0012,
+          "gap3_lo": -0.0127,
+          "gap3_hi": 0.015,
+          "E": 0.0553,
+          "E_dense": 0.0436,
+          "E_diff": 0.0117,
+          "M_diff": 0.0003,
+          "max_family_deficit": 0.0198,
+          "worst_family": "ddos",
+          "admitted": true,
+          "ece_gap": -0.0118,
+          "ece_gap_lo": -0.0297,
+          "ece_gap_hi": 0.0061
+        },
+        "saber_v2": {
+          "gap5": 0.0082,
+          "gap5_lo": -0.0094,
+          "gap5_hi": 0.0257,
+          "gap3": 0.0068,
+          "gap3_lo": -0.0419,
+          "gap3_hi": 0.0554,
+          "E": 0.0558,
+          "E_dense": 0.0436,
+          "E_diff": 0.0122,
+          "M_diff": 0.0052,
+          "max_family_deficit": 0.0982,
+          "worst_family": "spoofing",
+          "admitted": false,
+          "ece_gap": -0.0121,
+          "ece_gap_lo": -0.0263,
+          "ece_gap_hi": 0.0021
+        }
+      }
+    }
+  },
+  "expectations": {
+    "Y1_no_headroom_both": true,
+    "Y2_deep_audit_admits_at_least_three": true,
+    "Y3_shallow_all_intervals_above_zero": true
+  },
+  "new_runs": 24,
+  "collapses_as_trained_new": 0,
+  "prereg": {
+    "notebook": "48_iomt_full_recovery_seeds",
+    "question": "on CIC-IoMT-2024 at 90% realised MAC reduction after two epochs of recovery, with five seeds instead of three: does any rule carry more deployed risk than the dense reference (headroom), which structures does the paper's deployment audit admit, and are the shallow-network residuals real",
+    "motivation": "notebook 45, three seeds: no headroom on either network; shallow paired gaps +0.007 to +0.019 with every interval above zero; deep means -0.004 to +0.012 with intervals reaching 0.024 to 0.055, so the audit (interval below 0.02) admitted only Fisher on the deep network on interval width alone",
+    "design": {
+      "structures": "the committed notebook 45 90% structures (N45_{arch}_{method}_b90_removed_groups.csv), five rules, both networks, and the dense teacher",
+      "recovery": "two full epochs, batch 1,024, Adam 1e-3, cross-entropy with the notebook 32 class-weight exponent of each network; exactly notebook 45's standard regime",
+      "new_seeds": [
+        401,
+        503
+      ],
+      "pooled_seeds": [
+        101,
+        211,
+        307,
+        401,
+        503
+      ],
+      "pooling": "the 36 standard-regime rows of N45_runs.csv (seeds 101, 211, 307) plus the 24 rows of this notebook; paired by seed",
+      "recalibration_and_evaluation": "identical to notebook 45 (fixed 51,200-row slice; class-balanced subsample, at most 4,000 rows per class, seed 0; 200,000-row natural-prior sample, seed 2026)"
+    },
+    "thresholds": {
+      "tau": 0.02,
+      "tau_E": 0.02,
+      "tau_F": 0.15
+    },
+    "readings": {
+      "H_headroom": "per network: the best rule (lowest mean HSR) has mean paired gap >= 0.02 with the 95% paired t interval above zero (condition (4) of the paper)",
+      "A_audit": "per network and rule, Algorithm 1 of the paper: admitted if mean paired gap < 0.02 and the upper end of its 95% interval < 0.02, mean benign escalation and mean attack miss within 0.02 of the dense reference's, and every family's mean recall within 0.15 of the dense reference's",
+      "S_separation": "per network: largest mean paired difference between two rules, and the number of Holm-corrected paired contrasts significant at 0.05",
+      "C_calibration": "per network and rule: paired ECE (student minus dense) on the balanced subsample and the natural-prior sample; counts better / worse / straddling"
+    },
+    "expectations": {
+      "Y1": "no headroom on either network at five seeds (as at three)",
+      "Y2": "on the deep network the audit admits at least three of the five rules at five seeds",
+      "Y3": "on the shallow network every rule's five-seed paired-gap interval stays above zero (the residuals are real)"
+    },
+    "reporting_rule": "every reading reported as measured; a failed expectation changes the paper's text, it is not dropped",
+    "no_test_access": true,
+    "no_new_selection": true
+  }
+}
