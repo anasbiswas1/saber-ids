@@ -1,0 +1,46 @@
+{
+  "notebook": "46_recovery_budget_curve",
+  "question": "at 90% realised MAC reduction on CICIoT2023, how much retraining is needed before a pruned detector matches the dense model recovered the same way on the aggregate risk, on every attack family and on benign escalation, and does the aggregate pass before the families return",
+  "motivation": "notebook 40 measured two budgets only: one pass over a 10% subset (shallow: HSR gap +0.039 for the best rule, benign escalation 12 to 32%, brute force, malware and web near zero recall; deep: aggregate within the dense range but the same families lost for Fisher, Taylor and leverage) and two full epochs (every endpoint within the dense range). The curve between them is the operator's decision",
+  "design": {
+    "corpus": "CICIoT2023 in the frozen notebook 40 form: same partitions, clipping bounds (0.1/99.9 percentiles of 400,000 training rows), teachers, class weights and evaluation subsample",
+    "structures": "the committed notebook 40 90% structures for magnitude, Taylor and Fisher (N40_{arch}_{method}_b90_removed_groups.csv), both networks; the dense reference",
+    "recovery_budgets": {
+      "0.10": "one pass over a seeded 10% subset of the training rows (notebook 40's cheap pass)",
+      "0.25": "one pass over a seeded 25% subset",
+      "0.50": "one pass over a seeded 50% subset",
+      "1.00": "one full epoch, seeded order",
+      "2.00": "two full epochs, seeded order (notebook 40's full recovery)"
+    },
+    "optimiser": "batch 1,024, Adam 1e-3, cross-entropy with inverse-square-root class weights, as notebook 40",
+    "seeds": [
+      601,
+      701,
+      809
+    ],
+    "seeds_note": "new seeds, disjoint from notebook 40's, so the two-epoch point pools to six seeds with notebook 40 for these three rules",
+    "reference": "the dense teacher recovered under the same seed, subset and budget, and recalibrated the same way (paired)",
+    "recalibration": "every recovered model: BatchNorm statistics re-estimated on the first 51,200 rows of a seed-2026 permutation of the training rows, weights frozen",
+    "evaluation": "primary: the notebook 40 class-balanced evaluation subsample (at most 4,000 rows per class); secondary, recalibrated models only: a 200,000-row natural-prior sample of the validation partition (seed 2026)",
+    "endpoints": "HSR under the balanced profile (primary), benign escalation E, attack miss M, family and fine macro-F1, per-family recall, 15-bin equal-mass ECE and its sign (mean confidence minus accuracy)"
+  },
+  "thresholds": {
+    "aggregate": 0.02,
+    "family": 0.15,
+    "escalation": 0.02
+  },
+  "readings": {
+    "R_aggregate": "per network and rule: the smallest budget at which the paired HSR gap's 95% interval lies entirely below 0.02",
+    "R_family": "per network and rule: the smallest budget at which every family's mean recall is within 0.15 of the dense reference recovered with the same budget",
+    "R_escalation": "per network and rule: the smallest budget at which mean benign escalation is within 0.02 of the dense reference's",
+    "C_calibration": "paired ECE (student minus dense) at every budget, balanced subsample and natural-prior sample, with the sign of the dense reference's confidence minus accuracy"
+  },
+  "expectations": {
+    "E1": "on the shallow network R_family > R_aggregate for at least one of the three rules (the aggregate passes before the families return)",
+    "E2": "on the deep network R_aggregate = 0.10 for magnitude (notebook 40: the cheap pass already matches the dense reference in the aggregate)",
+    "E3": "R_family <= 2.00 for every rule on both networks (two epochs repair every family, notebook 40)"
+  },
+  "reporting_rule": "every reading reported as measured; a failed expectation changes the paper's text, it is not dropped",
+  "no_test_access": true,
+  "no_new_selection": true
+}
