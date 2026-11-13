@@ -1,0 +1,43 @@
+{
+  "notebook": "49_iomt_unseen_recon_seeds",
+  "question": "on CIC-IoMT-2024, with nine seeds instead of three, does a pruned and recovered detector raise unseen reconnaissance less often, more often, or as often as the dense detector trained and recovered the same way, at matched in-distribution risk",
+  "motivation": "notebook 47 (three seeds): Fisher students raised unseen reconnaissance less on every seed (shallow 9.2% vs 22.7%, deep 19.5% vs 51.5%), magnitude students less on two seeds of three, no interval excluding zero; on CICIoT2023 (notebook 41, five seeds) the magnitude students raised it more on both networks",
+  "design": {
+    "protocol": "notebook 47 unchanged: same bridge, Setting construction, teacher training, acceptance rule, dense reference, scoring, prefix calibration, recovery, recalibration and audit",
+    "held_out_families": [
+      "recon"
+    ],
+    "seeds": [
+      401,
+      503,
+      601,
+      701,
+      809,
+      907
+    ],
+    "pooling": "notebook 47's reconnaissance rows (seeds 101, 211, 307) plus this notebook's rows; paired by seed; nine seeds per network and rule",
+    "acceptance_rule": "notebook 47's: benign escalation <= 0.15, attack recall >= 0.85, fine macro-F1 >= 0.40 on the remaining classes after recalibration; failing cells excluded and listed"
+  },
+  "readings": {
+    "less": "per network and rule: the paired gap (dense minus student, share raised as attack) is at least 0.05 with its 95% interval above zero and the cell is matched (mean paired in-distribution HSR difference within 0.02): the student raises the family less",
+    "more": "per network and rule: the paired gap is negative with its 95% interval below zero: the student raises the family more",
+    "level": "neither: the interval contains zero or the mean is below 0.05",
+    "per_network": "pruned_raise_less if both rules read less; pruned_raise_more if both read more; mixed otherwise"
+  },
+  "expectation": {
+    "Z1": "the Fisher student reads 'less' on at least one network (the three-seed direction holds)"
+  },
+  "reporting_rule": "every cell reported as measured; whichever way it reads, Section V of the paper states it",
+  "budgets": [
+    0.9
+  ],
+  "methods": [
+    "magnitude",
+    "fisher"
+  ],
+  "gap_threshold": 0.05,
+  "match_threshold": 0.02,
+  "teacher_epochs": 4,
+  "recovery_epochs": 2,
+  "no_test_access": true
+}
