@@ -1,0 +1,41 @@
+{
+  "notebook": "48_iomt_full_recovery_seeds",
+  "question": "on CIC-IoMT-2024 at 90% realised MAC reduction after two epochs of recovery, with five seeds instead of three: does any rule carry more deployed risk than the dense reference (headroom), which structures does the paper's deployment audit admit, and are the shallow-network residuals real",
+  "motivation": "notebook 45, three seeds: no headroom on either network; shallow paired gaps +0.007 to +0.019 with every interval above zero; deep means -0.004 to +0.012 with intervals reaching 0.024 to 0.055, so the audit (interval below 0.02) admitted only Fisher on the deep network on interval width alone",
+  "design": {
+    "structures": "the committed notebook 45 90% structures (N45_{arch}_{method}_b90_removed_groups.csv), five rules, both networks, and the dense teacher",
+    "recovery": "two full epochs, batch 1,024, Adam 1e-3, cross-entropy with the notebook 32 class-weight exponent of each network; exactly notebook 45's standard regime",
+    "new_seeds": [
+      401,
+      503
+    ],
+    "pooled_seeds": [
+      101,
+      211,
+      307,
+      401,
+      503
+    ],
+    "pooling": "the 36 standard-regime rows of N45_runs.csv (seeds 101, 211, 307) plus the 24 rows of this notebook; paired by seed",
+    "recalibration_and_evaluation": "identical to notebook 45 (fixed 51,200-row slice; class-balanced subsample, at most 4,000 rows per class, seed 0; 200,000-row natural-prior sample, seed 2026)"
+  },
+  "thresholds": {
+    "tau": 0.02,
+    "tau_E": 0.02,
+    "tau_F": 0.15
+  },
+  "readings": {
+    "H_headroom": "per network: the best rule (lowest mean HSR) has mean paired gap >= 0.02 with the 95% paired t interval above zero (condition (4) of the paper)",
+    "A_audit": "per network and rule, Algorithm 1 of the paper: admitted if mean paired gap < 0.02 and the upper end of its 95% interval < 0.02, mean benign escalation and mean attack miss within 0.02 of the dense reference's, and every family's mean recall within 0.15 of the dense reference's",
+    "S_separation": "per network: largest mean paired difference between two rules, and the number of Holm-corrected paired contrasts significant at 0.05",
+    "C_calibration": "per network and rule: paired ECE (student minus dense) on the balanced subsample and the natural-prior sample; counts better / worse / straddling"
+  },
+  "expectations": {
+    "Y1": "no headroom on either network at five seeds (as at three)",
+    "Y2": "on the deep network the audit admits at least three of the five rules at five seeds",
+    "Y3": "on the shallow network every rule's five-seed paired-gap interval stays above zero (the residuals are real)"
+  },
+  "reporting_rule": "every reading reported as measured; a failed expectation changes the paper's text, it is not dropped",
+  "no_test_access": true,
+  "no_new_selection": true
+}
