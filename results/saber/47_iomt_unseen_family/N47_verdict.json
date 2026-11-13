@@ -1,0 +1,277 @@
+{
+  "notebook": "47_iomt_unseen_family",
+  "overall": "no_gap",
+  "X4_no_gap_both": true,
+  "by_architecture": {
+    "shallow": {
+      "P1": false,
+      "reading": "no_gap",
+      "families_meeting_gap_both_methods": {
+        "dos": false,
+        "recon": false,
+        "spoofing": false
+      },
+      "families_meeting_gap_both_methods_matched": {
+        "dos": false,
+        "recon": false,
+        "spoofing": false
+      },
+      "student_better_flag": false,
+      "cells_student_better": 1,
+      "cells": [
+        {
+          "family": "dos",
+          "method": "magnitude",
+          "n_seeds": 3,
+          "dense_unseen_detect": 1.0,
+          "student_unseen_detect": 1.0,
+          "gap": -0.0,
+          "gap_lo": -0.0001,
+          "gap_hi": 0.0001,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.0042,
+          "student_better": false
+        },
+        {
+          "family": "dos",
+          "method": "fisher",
+          "n_seeds": 3,
+          "dense_unseen_detect": 1.0,
+          "student_unseen_detect": 0.9998,
+          "gap": 0.0002,
+          "gap_lo": -0.0,
+          "gap_hi": 0.0003,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.0099,
+          "student_better": false
+        },
+        {
+          "family": "recon",
+          "method": "magnitude",
+          "n_seeds": 3,
+          "dense_unseen_detect": 0.227,
+          "student_unseen_detect": 0.1956,
+          "gap": 0.0314,
+          "gap_lo": -0.3411,
+          "gap_hi": 0.4039,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.0149,
+          "student_better": false
+        },
+        {
+          "family": "recon",
+          "method": "fisher",
+          "n_seeds": 3,
+          "dense_unseen_detect": 0.227,
+          "student_unseen_detect": 0.0925,
+          "gap": 0.1345,
+          "gap_lo": -0.041,
+          "gap_hi": 0.31,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.0163,
+          "student_better": false
+        },
+        {
+          "family": "spoofing",
+          "method": "magnitude",
+          "n_seeds": 3,
+          "dense_unseen_detect": 0.5066,
+          "student_unseen_detect": 0.5636,
+          "gap": -0.057,
+          "gap_lo": -0.0993,
+          "gap_hi": -0.0148,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.013,
+          "student_better": true
+        },
+        {
+          "family": "spoofing",
+          "method": "fisher",
+          "n_seeds": 3,
+          "dense_unseen_detect": 0.5066,
+          "student_unseen_detect": 0.551,
+          "gap": -0.0445,
+          "gap_lo": -0.139,
+          "gap_hi": 0.0501,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.0156,
+          "student_better": false
+        }
+      ]
+    },
+    "deep": {
+      "P1": false,
+      "reading": "no_gap",
+      "families_meeting_gap_both_methods": {
+        "dos": false,
+        "recon": false,
+        "spoofing": false
+      },
+      "families_meeting_gap_both_methods_matched": {
+        "dos": false,
+        "recon": false,
+        "spoofing": false
+      },
+      "student_better_flag": false,
+      "cells_student_better": 0,
+      "cells": [
+        {
+          "family": "dos",
+          "method": "magnitude",
+          "n_seeds": 3,
+          "dense_unseen_detect": 0.9999,
+          "student_unseen_detect": 0.9999,
+          "gap": 0.0,
+          "gap_lo": 0.0,
+          "gap_hi": 0.0,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.0035,
+          "student_better": false
+        },
+        {
+          "family": "dos",
+          "method": "fisher",
+          "n_seeds": 3,
+          "dense_unseen_detect": 0.9999,
+          "student_unseen_detect": 0.9998,
+          "gap": 0.0001,
+          "gap_lo": -0.0005,
+          "gap_hi": 0.0006,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.0072,
+          "student_better": false
+        },
+        {
+          "family": "recon",
+          "method": "magnitude",
+          "n_seeds": 3,
+          "dense_unseen_detect": 0.515,
+          "student_unseen_detect": 0.2933,
+          "gap": 0.2218,
+          "gap_lo": -0.6751,
+          "gap_hi": 1.1187,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.0005,
+          "student_better": false
+        },
+        {
+          "family": "recon",
+          "method": "fisher",
+          "n_seeds": 3,
+          "dense_unseen_detect": 0.515,
+          "student_unseen_detect": 0.1947,
+          "gap": 0.3204,
+          "gap_lo": -0.0513,
+          "gap_hi": 0.6921,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.0,
+          "student_better": false
+        },
+        {
+          "family": "spoofing",
+          "method": "magnitude",
+          "n_seeds": 3,
+          "dense_unseen_detect": 0.3788,
+          "student_unseen_detect": 0.3915,
+          "gap": -0.0127,
+          "gap_lo": -0.1601,
+          "gap_hi": 0.1347,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": 0.0025,
+          "student_better": false
+        },
+        {
+          "family": "spoofing",
+          "method": "fisher",
+          "n_seeds": 3,
+          "dense_unseen_detect": 0.3788,
+          "student_unseen_detect": 0.4885,
+          "gap": -0.1097,
+          "gap_lo": -0.3519,
+          "gap_hi": 0.1325,
+          "gap_condition": false,
+          "matched": true,
+          "hsr_gap_student_minus_dense": -0.0061,
+          "student_better": false
+        }
+      ]
+    }
+  },
+  "excluded_cells": [],
+  "teachers_accepted": 18,
+  "teachers": 18,
+  "dense_unseen_detect": {
+    "shallow/dos": 1.0,
+    "shallow/recon": 0.227,
+    "shallow/spoofing": 0.5066,
+    "deep/dos": 0.9999,
+    "deep/recon": 0.515,
+    "deep/spoofing": 0.3788
+  },
+  "prereg": {
+    "notebook": "47_iomt_unseen_family",
+    "question": "on CIC-IoMT-2024, does a pruned and recovered detector raise an attack family it never saw in training less often than the dense detector trained and recovered the same way, at matched in-distribution risk",
+    "motivation": "notebook 41 answered this on CICIoT2023: no cell met the gap condition, unseen DoS and web attacks were raised on 99.7 to 100% of their flows by dense and pruned detectors alike, and unseen reconnaissance was raised more often by the pruned students. A second corpus is the test of generality of the paper's third contribution",
+    "design": {
+      "corpus": "CIC-IoMT-2024 WiFi/MQTT through the notebook 32 bridge (official train side only, exact duplicates removed, seeded 20% stratified validation carve-out, 19 classes in 6 families, 45 features); evaluation subsample of notebooks 33 to 45 (at most 4,000 rows per class, seed 0); the official test files are never opened",
+      "held_out_families": [
+        "dos",
+        "recon",
+        "spoofing"
+      ],
+      "held_out_note": "DoS (four TCP/IP classes; its same-protocol neighbour DDoS stays in training, as DDoS did for DoS on CICIoT2023), reconnaissance (four classes) and spoofing (one class, ARP spoofing, the smallest family, in the role web application played on CICIoT2023); MQTT is not held out because it would remove five classes and the only MQTT-protocol traffic",
+      "held_out_rule": "every class of the held-out family is removed from the training rows, the class weights, the recalibration slice and the Fisher batches; the models have one output per remaining class; the in-distribution audit uses the evaluation rows of the remaining classes; the unseen audit uses the evaluation rows of the held-out family; shared across settings and not refit per family: the bridge's per-feature clipping bounds and standardisation (percentiles, mean and standard deviation of the full training split), which carry no label information",
+      "architectures": "shallow CNN (64/128) and deep CNN (64/128/128/256) of notebooks 32 to 45, one output per remaining class",
+      "teacher": "trained from scratch per (architecture, family, seed): 4 epochs, Adam 1e-3, batch 1,024, class weights count^-alpha normalised to unit mean with the notebook 32 exponent of the architecture (shallow 0.5, deep 0.35), seeded initialisation and shuffle",
+      "teacher_acceptance": "on the remaining classes' evaluation rows, after recalibration: benign escalation at most 0.15, attack recall at least 0.85, fine macro-F1 at least 0.40; the escalation bound is 0.15 rather than notebook 41's 0.10 because the accepted notebook 32 shallow teacher of this corpus already escalates 0.087 on the balanced subsample and teachers trained without a family vary by a few points across seeds; the rule exists to exclude a broken teacher, not to select a good one; a cell whose teacher fails is excluded from the verdict and listed",
+      "dense_reference": "the cell's teacher given two further epochs under the cell's recovery seed, then recalibrated (same treatment as the students)",
+      "students": "magnitude (L1) and Fisher scores computed on the teacher (Fisher on 40 training batches of remaining classes); removal orders ascending with the per-layer floor of 8 channels used on this corpus; prefixes calibrated to 90% realised MAC reduction (tolerance 1.5 points); recovered two full epochs over the remaining training rows under the cell's recovery seed; recalibrated",
+      "recalibration": "BatchNorm running statistics re-estimated on the first 51,200 rows of a seed-2026 permutation of the remaining training rows, weights frozen",
+      "seeds": [
+        101,
+        211,
+        307
+      ],
+      "cells": "2 architectures x 3 families x 3 seeds = 18 teachers, 18 dense references, 36 students"
+    },
+    "endpoints": {
+      "unseen_detect": "fraction of the held-out family's evaluation rows predicted as any attack class (argmax rule), the primary endpoint",
+      "unseen_absorption": "share of the held-out family's rows predicted as benign and as each remaining attack family (descriptive)",
+      "unseen_attack_mass": "mean of 1 minus the benign probability on the held-out rows (threshold-free, descriptive)",
+      "in_distribution": "recalibrated ground-truth HSR (balanced profile), benign escalation, attack-miss rate, family and fine macro-F1, ECE and per-family recall on the remaining classes",
+      "paired_gap": "dense reference's unseen_detect minus the student's, under the same seed; mean over accepted seeds with a 95% t interval",
+      "matched": "the mean paired difference in in-distribution HSR between student and dense reference is within 0.02"
+    },
+    "P1_gap": "for an architecture, P1 holds if at 90% realised reduction, for at least two of the three held-out families and for both rules, the paired gap in unseen_detect is at least 0.05 with the lower end of its 95% interval above zero, and the cell is matched in distribution",
+    "readings": {
+      "per_architecture": "gap_at_matched_risk if P1 holds; gap_but_unmatched if the gap condition holds in at least two families for both rules but matching fails in one of those cells; partial if at least one cell meets the gap condition but P1 fails; no_gap if no cell meets it; a separate flag student_better is set when at least half of the cells have a negative gap with the upper end of the interval below zero",
+      "overall": "gap_both / gap_one_architecture / no_gap (both read no_gap) / inconclusive"
+    },
+    "cross_corpus_expectation": "X4: both architectures read no_gap, as on CICIoT2023",
+    "reporting_rule": "every cell reported as measured; a failed expectation changes the paper's generality statement, it is not dropped",
+    "budgets": [
+      0.9
+    ],
+    "primary_budget": 0.9,
+    "methods": [
+      "magnitude",
+      "fisher"
+    ],
+    "gap_threshold": 0.05,
+    "match_threshold": 0.02,
+    "teacher_epochs": 4,
+    "recovery_epochs": 2,
+    "no_test_access": true
+  }
+}
