@@ -1,0 +1,30 @@
+{
+  "notebook": "50_temperature_scaling",
+  "question": "at 90% on CICIoT2023 after two epochs, does the pruned students' lower calibration error survive when the dense reference and every student are each given their own temperature fitted on held-out validation rows",
+  "motivation": "notebooks 40 and 46: the dense reference's confidence exceeds its accuracy by 0.22 (shallow) and 0.27 (deep) after two epochs; students better calibrated in 71 of 80 paired cells. Temperature scaling (Guo et al., 2017) is the standard post-hoc fix and a reviewer's first objection",
+  "design": {
+    "models": "dense teacher and the committed notebook 40 90% structures for magnitude, Taylor, Fisher; both networks",
+    "recovery": "two full epochs, notebook 46's recovery and recalibration code unchanged; seeds 601, 701, 809 (notebook 46's two-epoch seeds)",
+    "temperature_fit": "one scalar T > 0 per recovered and recalibrated model, minimising the mean negative log-likelihood of softmax(logits / T) over log T in [log 0.05, log 20] (bounded scalar minimisation), on a fit set of validation rows disjoint from the evaluation subsample and the natural-prior sample: at most 2,000 rows per class, seed 7",
+    "evaluation": "notebook 46's class-balanced evaluation subsample (primary) and 200,000-row natural-prior sample; 15-bin equal-mass ECE and mean confidence minus accuracy, before and after scaling"
+  },
+  "readings": {
+    "C_raw": "per network and rule: paired ECE (student minus dense) before scaling, 95% paired t interval; counts better / worse / straddling",
+    "C_scaled": "the same after each model's own temperature",
+    "T": "fitted temperatures, dense and students, mean and range over seeds",
+    "overall": "advantage_is_temperature if after scaling at most two of the six cells keep the student interval below zero and none has it above zero; advantage_survives if at least four of six keep it below zero; students_worse_after_scaling if at least two of six have it above zero; mixed otherwise"
+  },
+  "expectation": {
+    "T1": "after scaling the dense reference's ECE is at most 0.05 on both networks and the reading is advantage_is_temperature"
+  },
+  "reporting_rule": "every reading reported as measured; whichever way it reads, Section IV-D of the paper states it",
+  "seeds": [
+    601,
+    701,
+    809
+  ],
+  "fit_rows_per_class": 2000,
+  "fit_seed": 7,
+  "no_test_access": true,
+  "no_new_selection": true
+}
